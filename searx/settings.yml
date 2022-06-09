@@ -1520,7 +1520,7 @@ engines:
 
   - name: 1337x
     engine: 1337x
-    shortcut: 1337x
+    shortcut: 1337
     disabled: true
 
   - name: duden
