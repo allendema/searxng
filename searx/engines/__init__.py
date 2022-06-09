@@ -147,8 +147,8 @@ def load_engine(engine_data: dict) -> Optional[Engine]:
 def set_loggers(engine, engine_name):
     # set the logger for engine
     engine.logger = logger.getChild(engine_name)
-    # the engine may have load some other engines
-    # may sure the logger is initialized
+    # the engine may have loaded some other engines
+    # make sure the logger is initialized
     for module_name, module in sys.modules.items():
         if (
             module_name.startswith("searx.engines")
