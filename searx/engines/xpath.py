@@ -181,7 +181,7 @@ def request(query, params):
 
 
 def response(resp):
-    '''Scrap *results* from the response (see :ref:`engine results`).'''
+    '''Scrape *results* from the response (see :ref:`engine results`).'''
     results = []
     dom = html.fromstring(resp.text)
     is_onion = 'onions' in categories
