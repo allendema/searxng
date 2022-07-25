@@ -28,6 +28,10 @@ number_of_results = 5
 http_digest_auth_user = ""
 http_digest_auth_pass = ""
 
+# Set yacy local or global mode in settings.yml
+# which means you most likely receive different results
+yacy_mode = None
+
 # search-url
 base_url = 'http://localhost:8090'
 search_url = (
@@ -35,7 +39,7 @@ search_url = (
     '&startRecord={offset}'
     '&maximumRecords={limit}'
     '&contentdom={search_type}'
-    '&resource=global'
+    '&resource={yacy_mode}'
 )
 
 # yacy specific type-definitions
@@ -48,7 +52,11 @@ def request(query, params):
     search_type = search_types.get(params.get('category'), '0')
 
     params['url'] = base_url + search_url.format(
-        query=urlencode({'query': query}), offset=offset, limit=number_of_results, search_type=search_type
+        query=urlencode({'query': query}),
+        offset=offset,
+        limit=number_of_results,
+        search_type=search_type,
+        yacy_mode=yacy_mode
     )
 
     if http_digest_auth_user and http_digest_auth_pass:
