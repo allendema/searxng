@@ -440,6 +440,16 @@ engines:
       require_api_key: false
       results: JSON
 
+  - name: etools
+    engine: etools
+    shortcut: eto
+    disabled: True
+    # https://www.etools.ch/searchSettings.do
+    # set your engines/ranking system there and copy the cookie, example:
+    # headers: {'cookie' : 'JSESSIONID=E1CAD2222BFDDC33333E4444AFCFDD5; searchSettings=VER_3.3'}
+    additional_tests:
+      rosebud: *test_rosebud
+
   - name: curlie
     engine: xpath
     shortcut: cl
