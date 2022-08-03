@@ -27,6 +27,8 @@ search_path = '/searchAdvancedSubmit.do'\
     '&pageResults=20'\
     '&safeSearch={safesearch}'
 
+cookies = {}
+headers = {}
 
 def request(query, params):
     if params['safesearch']:
@@ -34,6 +36,9 @@ def request(query, params):
     else:
         safesearch = 'false'
 
+    params['cookies'].update(cookies)
+    params['headers'].update(headers)
+    
     params['url'] = base_url + search_path.format(search_term=quote(query),
                                                   safesearch=safesearch)
 
