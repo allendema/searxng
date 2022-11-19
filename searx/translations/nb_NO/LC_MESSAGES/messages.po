@@ -3,20 +3,23 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 # Morten R. Bjørklund <mortenrb@live.no>, 2022.
+# Markus Heiser <markus.heiser@darmarit.de>, 2022.
+# forvirretfrukt <lillelilli87@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-08 18:28+0000\n"
-"PO-Revision-Date: 2022-07-06 00:21+0000\n"
-"Last-Translator: Morten R. Bjørklund <mortenrb@live.no>\n"
+"POT-Creation-Date: 2022-10-14 14:11+0000\n"
+"PO-Revision-Date: 2022-10-28 07:18+0000\n"
+"Last-Translator: forvirretfrukt <lillelilli87@gmail.com>\n"
+"Language-Team: Norwegian Bokmål <https://weblate.bubu1.eu/projects/searxng/"
+"searxng/nb_NO/>\n"
 "Language: nb_NO\n"
-"Language-Team: Norwegian Bokmål "
-"<https://weblate.bubu1.eu/projects/searxng/searxng/nb_NO/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 "Generated-By: Babel 2.10.3\n"
 
 #. CONSTANT_NAMES['DEFAULT_GROUP_NAME']
@@ -77,7 +80,7 @@ msgstr "kart"
 #. CATEGORY_NAMES['ONIONS']
 #: searx/searxng.msg
 msgid "onions"
-msgstr "løktjenester"
+msgstr "onions"
 
 #. CATEGORY_NAMES['SCIENCE']
 #: searx/searxng.msg
@@ -124,6 +127,11 @@ msgstr "programvare-wiki-er"
 msgid "web"
 msgstr "vev"
 
+#. CATEGORY_GROUPS['SCIENTIFIC PUBLICATIONS']
+#: searx/searxng.msg
+msgid "scientific publications"
+msgstr "Vitenskaplige publikasjoner"
+
 #. STYLE_NAMES['AUTO']
 #: searx/searxng.msg
 msgid "auto"
@@ -139,21 +147,25 @@ msgstr "lys"
 msgid "dark"
 msgstr "mørk"
 
-#: searx/webapp.py:165
+#: searx/webapp.py:164
 msgid "timeout"
 msgstr "tidsavbrudd"
 
-#: searx/webapp.py:166
+#: searx/webapp.py:165
 msgid "parsing error"
 msgstr "tolkningsfeil"
 
-#: searx/webapp.py:167
+#: searx/webapp.py:166
 msgid "HTTP protocol error"
 msgstr "HTTP-protokollfeil"
 
-#: searx/webapp.py:168
+#: searx/webapp.py:167
 msgid "network error"
 msgstr "nettverksfeil"
+
+#: searx/webapp.py:168
+msgid "SSL error: certificate validation has failed"
+msgstr "SSL-feil: sertifikat validering mislyktes"
 
 #: searx/webapp.py:170
 msgid "unexpected crash"
@@ -187,42 +199,42 @@ msgstr "tilgang nektet"
 msgid "server API error"
 msgstr "Tjener-API-feil"
 
-#: searx/webapp.py:363
+#: searx/webapp.py:365
 msgid "No item found"
 msgstr "Fant ingen elementer"
 
-#: searx/engines/qwant.py:212
-#: searx/templates/simple/result_templates/images.html:20 searx/webapp.py:365
+#: searx/engines/qwant.py:217
+#: searx/templates/simple/result_templates/images.html:20 searx/webapp.py:367
 msgid "Source"
 msgstr "Kilde"
 
-#: searx/webapp.py:367
+#: searx/webapp.py:369
 msgid "Error loading the next page"
 msgstr "Det var et problem med lasting av neste side"
 
-#: searx/webapp.py:516 searx/webapp.py:960
+#: searx/webapp.py:521 searx/webapp.py:953
 msgid "Invalid settings, please edit your preferences"
 msgstr "Ugyldige innstillinger, rediger dine preferanser"
 
-#: searx/webapp.py:532
+#: searx/webapp.py:537
 msgid "Invalid settings"
 msgstr "Ugyldige innstillinger"
 
-#: searx/webapp.py:609 searx/webapp.py:685
+#: searx/webapp.py:614 searx/webapp.py:690
 msgid "search error"
 msgstr "søkefeil"
 
-#: searx/webapp.py:731
-msgid "{minutes} minute(s) ago"
-msgstr "for {minutes} minute(s) siden"
-
-#: searx/webapp.py:733
-msgid "{hours} hour(s), {minutes} minute(s) ago"
-msgstr "for {hours} time(r), {minutes} minutt(er) siden"
-
-#: searx/webapp.py:859
+#: searx/webapp.py:852
 msgid "Suspended"
 msgstr "I hvilemodus"
+
+#: searx/webutils.py:161
+msgid "{minutes} minute(s) ago"
+msgstr "for {minutes} minuter siden"
+
+#: searx/webutils.py:162
+msgid "{hours} hour(s), {minutes} minute(s) ago"
+msgstr "for {hours} time(r), {minutes} minutt(er) siden"
 
 #: searx/answerers/random/answerer.py:67
 msgid "Random value generator"
@@ -252,13 +264,53 @@ msgstr "{title} (FORELDET)"
 msgid "This entry has been superseded by"
 msgstr "Denne oppføringen har blitt erstattet av"
 
-#: searx/engines/pubmed.py:78
-msgid "No abstract is available for this publication."
-msgstr "Sammendrag er ikke tilgjengelig for denne publikasjonen."
-
-#: searx/engines/qwant.py:214
+#: searx/engines/qwant.py:219
 msgid "Channel"
 msgstr "Kanal"
+
+#: searx/engines/semantic_scholar.py:81
+msgid ""
+"{numCitations} citations from the year {firstCitationVelocityYear} to "
+"{lastCitationVelocityYear}"
+msgstr ""
+
+#: searx/engines/tineye.py:40
+msgid ""
+"Could not read that image url. This may be due to an unsupported file "
+"format. TinEye only supports images that are JPEG, PNG, GIF, BMP, TIFF or"
+" WebP."
+msgstr ""
+"Kunne ikke lese bilde-lenken. Dette kan være fordi bildet er i et format "
+"som ikke er støttet. TinEye støtter bare JPEG, PNG, GIF, BMP, TIFF eller "
+"WebP formater."
+
+#: searx/engines/tineye.py:46
+msgid ""
+"The image is too simple to find matches. TinEye requires a basic level of"
+" visual detail to successfully identify matches."
+msgstr ""
+"Bildet har for få særskilte detaljer for at TinEye kan finne like eller "
+"lignende bilder."
+
+#: searx/engines/tineye.py:52
+msgid "The image could not be downloaded."
+msgstr "Bildet kunne ikke lastes ned."
+
+#: searx/engines/wttr.py:101
+msgid "Morning"
+msgstr "Morgen"
+
+#: searx/engines/wttr.py:101
+msgid "Noon"
+msgstr "Formiddag"
+
+#: searx/engines/wttr.py:101
+msgid "Evening"
+msgstr "Kveld"
+
+#: searx/engines/wttr.py:101
+msgid "Night"
+msgstr "Natt"
 
 #: searx/plugins/hash_plugin.py:24
 msgid "Converts strings to different hash digests."
@@ -301,8 +353,8 @@ msgstr ""
 "kategorier. (JavaScript kreves)"
 
 #: searx/plugins/self_info.py:20
-msgid "Self Informations"
-msgstr "Selv-informasjon"
+msgid "Self Information"
+msgstr "Selv informasjon"
 
 #: searx/plugins/self_info.py:21
 msgid ""
@@ -311,6 +363,32 @@ msgid ""
 msgstr ""
 "Viser din IP hvis spørringen er \"ip\" og din brukeragent hvis spørringen"
 " inneholder \"user agent\"."
+
+#: searx/plugins/tor_check.py:25
+msgid "Tor check plugin"
+msgstr "Tor sjekk pluggin"
+
+#: searx/plugins/tor_check.py:28
+msgid ""
+"This plugin checks if the address of the request is a TOR exit node, and "
+"informs the user if it is, like check.torproject.org but from searxng."
+msgstr ""
+"Denne plugin sjekker om adressen til forespørselen er en TOR-utgangsnode, og "
+"informerer brukeren om den er det, som check.torproject.org, men fra searxng."
+
+#: searx/plugins/tor_check.py:62
+msgid ""
+"The TOR exit node list (https://check.torproject.org/exit-addresses) is "
+"unreachable."
+msgstr ""
+
+#: searx/plugins/tor_check.py:78
+msgid "You are using TOR. Your IP address seems to be: {ip_address}."
+msgstr "Du bruker TOR. Din ip-adresse er: {ip_address}."
+
+#: searx/plugins/tor_check.py:84
+msgid "You are not using TOR. Your IP address seems to be: {ip_address}."
+msgstr "Du bruker ikke TOR. Din ip adresse er: {ip_address}."
 
 #: searx/plugins/tracker_url_remover.py:29
 msgid "Tracker URL remover"
@@ -363,8 +441,8 @@ msgid "Powered by"
 msgstr "Drevet av"
 
 #: searx/templates/simple/base.html:64
-msgid "a privacy-respecting, hackable metasearch engine"
-msgstr "en personvernsrespekterende, hackbar metasøkemotor"
+msgid "a privacy-respecting, open metasearch engine"
+msgstr ""
 
 #: searx/templates/simple/base.html:65
 msgid "Source code"
@@ -401,6 +479,7 @@ msgstr "Lengde"
 
 #: searx/templates/simple/macros.html:37
 #: searx/templates/simple/result_templates/images.html:18
+#: searx/templates/simple/result_templates/paper.html:6
 msgid "Author"
 msgstr "Opphavsmann"
 
@@ -444,17 +523,17 @@ msgid "View error logs and submit a bug report"
 msgstr "Vis feillogger og send inn en feilrapport"
 
 #: searx/templates/simple/preferences.html:53
-#: searx/templates/simple/stats.html:67
+#: searx/templates/simple/stats.html:64
 msgid "Median"
 msgstr "Median"
 
 #: searx/templates/simple/preferences.html:54
-#: searx/templates/simple/stats.html:73
+#: searx/templates/simple/stats.html:70
 msgid "P80"
 msgstr "P80"
 
 #: searx/templates/simple/preferences.html:55
-#: searx/templates/simple/stats.html:79
+#: searx/templates/simple/stats.html:76
 msgid "P95"
 msgstr "P95"
 
@@ -618,13 +697,10 @@ msgstr "HTTP Metode"
 
 #: searx/templates/simple/preferences.html:264
 msgid ""
-"Change how forms are submited, <a "
+"Change how forms are submitted, <a "
 "href=\"http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods\""
 " rel=\"external\">learn more about request methods</a>"
 msgstr ""
-"Endre hvordan skjemaer innsendes, <a "
-"href=\"http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods\""
-" rel=\"external\">lær mer om forespørselsmetoder</a>"
 
 #: searx/templates/simple/preferences.html:269
 msgid "Image proxy"
@@ -889,67 +965,63 @@ msgstr "Poengsummer"
 msgid "Result count"
 msgstr "Antall resultater"
 
-#: searx/templates/simple/stats.html:38
-msgid "Scores per result"
-msgstr "Vektninger per resultat"
-
-#: searx/templates/simple/stats.html:62
+#: searx/templates/simple/stats.html:59
 msgid "Total"
 msgstr "Totalt"
 
-#: searx/templates/simple/stats.html:63
+#: searx/templates/simple/stats.html:60
 msgid "HTTP"
 msgstr "HTTP"
 
-#: searx/templates/simple/stats.html:64
+#: searx/templates/simple/stats.html:61
 msgid "Processing"
 msgstr "Behandler"
 
-#: searx/templates/simple/stats.html:102
+#: searx/templates/simple/stats.html:99
 msgid "Warnings"
 msgstr "Advarsler"
 
-#: searx/templates/simple/stats.html:102
+#: searx/templates/simple/stats.html:99
 msgid "Errors and exceptions"
 msgstr "Feil og unntag"
 
-#: searx/templates/simple/stats.html:108
+#: searx/templates/simple/stats.html:105
 msgid "Exception"
 msgstr "Unntak"
 
-#: searx/templates/simple/stats.html:110
+#: searx/templates/simple/stats.html:107
 msgid "Message"
 msgstr "Melding"
 
-#: searx/templates/simple/stats.html:112
+#: searx/templates/simple/stats.html:109
 msgid "Percentage"
 msgstr "Prosentsats"
 
-#: searx/templates/simple/stats.html:114
+#: searx/templates/simple/stats.html:111
 msgid "Parameter"
 msgstr "Parameter"
 
-#: searx/templates/simple/stats.html:122
+#: searx/templates/simple/stats.html:119
 msgid "Filename"
 msgstr "Filnavn"
 
-#: searx/templates/simple/stats.html:123
+#: searx/templates/simple/stats.html:120
 msgid "Function"
 msgstr "Funksjon"
 
-#: searx/templates/simple/stats.html:124
+#: searx/templates/simple/stats.html:121
 msgid "Code"
 msgstr "Kode"
 
-#: searx/templates/simple/stats.html:131
+#: searx/templates/simple/stats.html:128
 msgid "Checker"
 msgstr "Sjekker"
 
-#: searx/templates/simple/stats.html:134
+#: searx/templates/simple/stats.html:131
 msgid "Failed test"
 msgstr "Mislykket test"
 
-#: searx/templates/simple/stats.html:135
+#: searx/templates/simple/stats.html:132
 msgid "Comment(s)"
 msgstr "Kommentar(er)"
 
@@ -1035,6 +1107,50 @@ msgstr "vis kart"
 #: searx/templates/simple/result_templates/map.html:43
 msgid "hide map"
 msgstr "skjul kart"
+
+#: searx/templates/simple/result_templates/paper.html:5
+msgid "Published date"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:9
+msgid "Journal"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:22
+msgid "Editor"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:23
+msgid "Publisher"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:24
+msgid "Type"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:25
+msgid "Tags"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:26
+msgid "DOI"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:27
+msgid "ISSN"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:28
+msgid "ISBN"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:33
+msgid "PDF"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:34
+msgid "HTML"
+msgstr ""
 
 #: searx/templates/simple/result_templates/torrent.html:6
 msgid "magnet link"
@@ -1260,3 +1376,25 @@ msgstr "skjul video"
 #~ msgid "preferences"
 #~ msgstr "innstillinger"
 
+#~ msgid "Scores per result"
+#~ msgstr "Vektninger per resultat"
+
+#~ msgid "a privacy-respecting, hackable metasearch engine"
+#~ msgstr "en personvernsrespekterende, hackbar metasøkemotor"
+
+#~ msgid "No abstract is available for this publication."
+#~ msgstr "Sammendrag er ikke tilgjengelig for denne publikasjonen."
+
+#~ msgid "Self Informations"
+#~ msgstr "Selv-informasjon"
+
+#~ msgid ""
+#~ "Change how forms are submited, <a "
+#~ "href=\"http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods\""
+#~ " rel=\"external\">learn more about request "
+#~ "methods</a>"
+#~ msgstr ""
+#~ "Endre hvordan skjemaer innsendes, <a "
+#~ "href=\"http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods\""
+#~ " rel=\"external\">lær mer om "
+#~ "forespørselsmetoder</a>"

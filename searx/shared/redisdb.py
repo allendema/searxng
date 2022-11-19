@@ -19,29 +19,52 @@ A redis DB connect can be tested by::
 
 """
 
+import os
+import pwd
 import logging
 import redis
 from searx import get_setting
 
-logger = logging.getLogger('searx.shared.redis')
-_client = None
+
+OLD_REDIS_URL_DEFAULT_URL = 'unix:///usr/local/searxng-redis/run/redis.sock?db=0'
+"""This was the default Redis URL in settings.yml."""
+
+_CLIENT = None
+logger = logging.getLogger('searx.shared.redisdb')
 
 
-def client():
-    global _client  # pylint: disable=global-statement
-    if _client is None:
-        # not thread safe: in the worst case scenario, two or more clients are
-        # initialized only one is kept, the others are garbage collected.
-        _client = redis.Redis.from_url(get_setting('redis.url'))
-    return _client
+def client() -> redis.Redis:
+    return _CLIENT
 
 
-def init():
+def initialize():
+    global _CLIENT  # pylint: disable=global-statement
+    redis_url = get_setting('redis.url')
+    if not redis_url:
+        return False
     try:
-        c = client()
-        logger.info("connected redis DB --> %s", c.acl_whoami())
+        # create a client, but no connection is done
+        _CLIENT = redis.Redis.from_url(redis_url)
+
+        # log the parameters as seen by the redis lib, without the password
+        kwargs = _CLIENT.get_connection_kwargs()
+        kwargs.pop('password', None)
+        kwargs = ' '.join([f'{k}={v!r}' for k, v in kwargs.items()])
+        logger.info("connecting to Redis %s", kwargs)
+
+        # check the connection
+        _CLIENT.ping()
+
+        # no error: the redis connection is working
+        logger.info("connected to Redis")
         return True
-    except redis.exceptions.ConnectionError as exc:
-        logger.error("can't connet redis DB ...")
-        logger.error("  %s", exc)
+    except redis.exceptions.RedisError as e:
+        _CLIENT = None
+        _pw = pwd.getpwuid(os.getuid())
+        logger.exception("[%s (%s)] can't connect redis DB ...", _pw.pw_name, _pw.pw_uid)
+        if redis_url == OLD_REDIS_URL_DEFAULT_URL and isinstance(e, redis.exceptions.ConnectionError):
+            logger.info(
+                "You can safely ignore the above Redis error if you don't use Redis. "
+                "You can remove this error by setting redis.url to false in your settings.yml."
+            )
     return False

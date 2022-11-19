@@ -67,7 +67,7 @@ def is_accepted_request() -> bool:
             return False
 
         accept_encoding_list = [l.strip() for l in request.headers.get('Accept-Encoding', '').split(',')]
-        if 'gzip' not in accept_encoding_list or 'deflate' not in accept_encoding_list:
+        if 'gzip' not in accept_encoding_list and 'deflate' not in accept_encoding_list:
             logger.debug("suspicious Accept-Encoding")  # pylint: disable=undefined-variable
             return False
 
@@ -93,9 +93,8 @@ def init(app, settings):
     if not settings['server']['limiter']:
         return False
 
-    logger.debug("init limiter DB")  # pylint: disable=undefined-variable
-    if not redisdb.init():
-        logger.error("init limiter DB failed!!!")  # pylint: disable=undefined-variable
+    if not redisdb.client():
+        logger.error("The limiter requires Redis")  # pylint: disable=undefined-variable
         return False
 
     app.before_request(pre_request)

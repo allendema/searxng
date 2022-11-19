@@ -4,12 +4,11 @@
 
 # shellcheck source=utils/lib.sh
 source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
-source_dot_config
 # shellcheck source=utils/brand.env
 source "${REPO_ROOT}/utils/brand.env"
 
 # load environment of the LXC suite
-LXC_ENV="${LXC_ENV:-${REPO_ROOT}/utils/lxc-searx.env}"
+LXC_ENV="${LXC_ENV:-${REPO_ROOT}/utils/lxc-searxng.env}"
 source "$LXC_ENV"
 lxc_set_suite_env
 
@@ -109,7 +108,7 @@ show
   :suite:        show services of all (or <name>) containers from the LXC suite
   :images:       show information of local images
 cmd
-  use single qoutes to evaluate in container's bash, e.g.: 'echo \$(hostname)'
+  use single quotes to evaluate in container's bash, e.g.: 'echo \$(hostname)'
   --             run command '...' in all containers of the LXC suite
   :<name>:       run command '...' in container <name>
 install
@@ -180,7 +179,7 @@ main() {
                         lxc_delete_container "$2"
                     fi
                     ;;
-                *) usage "uknown or missing container <name> $2"; exit 42;;
+                *) usage "unknown or missing container <name> $2"; exit 42;;
             esac
             ;;
         start|stop)
@@ -192,7 +191,7 @@ main() {
                     info_msg "lxc $1 $2"
                     lxc "$1" "$2" | prefix_stdout "[${_BBlue}${i}${_creset}] "
                     ;;
-                *) usage "uknown or missing container <name> $2"; exit 42;;
+                *) usage "unknown or missing container <name> $2"; exit 42;;
             esac
             ;;
         show)

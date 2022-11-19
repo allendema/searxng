@@ -45,6 +45,7 @@ categories = ['general', 'web']
 paging = True
 time_range_support = True
 safesearch = True
+send_accept_language_header = True
 use_mobile_ui = False
 supported_languages_url = 'https://www.google.com/preferences?#languages'
 
@@ -111,21 +112,14 @@ filter_mapping = {0: 'off', 1: 'medium', 2: 'high'}
 # specific xpath variables
 # ------------------------
 
-# google results are grouped into <div class="jtfYYd ..." ../>
-results_xpath = '//div[@class="jtfYYd"]'
+results_xpath = './/div[@data-sokoban-container]'
+title_xpath = './/a/h3[1]'
+href_xpath = './/a[h3]/@href'
+content_xpath = './/div[@data-content-feature=1]'
 
 # google *sections* are no usual *results*, we ignore them
 g_section_with_header = './g-section-with-header'
 
-# the title is a h3 tag relative to the result group
-title_xpath = './/h3[1]'
-
-# in the result group there is <div class="yuRUbf" ../> it's first child is a <a
-# href=...>
-href_xpath = './/div[@class="yuRUbf"]//a/@href'
-
-# in the result group there is <div class="VwiC3b ..." ../> containing the *content*
-content_xpath = './/div[contains(@class, "VwiC3b")]'
 
 # Suggestions are links placed in a *card-section*, we extract only the text
 # from the links not the links itself.
@@ -241,16 +235,6 @@ def get_lang_info(params, lang_list, custom_aliases, supported_any_language):
         # language.
         ret_val['params']['lr'] = "lang_" + lang_list.get(lang_country, language)
 
-        # Accept-Language: fr-CH, fr;q=0.8, en;q=0.6, *;q=0.5
-        ret_val['headers']['Accept-Language'] = ','.join(
-            [
-                lang_country,
-                language + ';q=0.8,',
-                'en;q=0.6',
-                '*;q=0.5',
-            ]
-        )
-
     return ret_val
 
 
@@ -270,7 +254,7 @@ def request(query, params):
     if use_mobile_ui:
         additional_parameters = {
             'asearch': 'arc',
-            'async': 'use_ac:true,_fmt:pc',
+            'async': 'use_ac:true,_fmt:prog',
         }
 
     # https://www.google.de/search?q=corona&hl=de&lr=lang_de&start=0&tbs=qdr%3Ad&safe=medium
@@ -287,7 +271,6 @@ def request(query, params):
                 'oe': "utf8",
                 'start': offset,
                 'filter': '0',
-                'ucbcb': 1,
                 **additional_parameters,
             }
         )
@@ -299,6 +282,7 @@ def request(query, params):
         query_url += '&' + urlencode({'safe': filter_mapping[params['safesearch']]})
     params['url'] = query_url
 
+    params['cookies']['CONSENT'] = "YES+"
     params['headers'].update(lang_info['headers'])
     if use_mobile_ui:
         params['headers']['Accept'] = '*/*'
@@ -342,14 +326,14 @@ def response(resp):
 
         # google *sections*
         if extract_text(eval_xpath(result, g_section_with_header)):
-            logger.debug("ingoring <g-section-with-header>")
+            logger.debug("ignoring <g-section-with-header>")
             continue
 
         try:
             title_tag = eval_xpath_getindex(result, title_xpath, 0, default=None)
             if title_tag is None:
                 # this not one of the common google results *section*
-                logger.debug('ingoring item from the result_xpath list: missing title')
+                logger.debug('ignoring item from the result_xpath list: missing title')
                 continue
             title = extract_text(title_tag)
             url = eval_xpath_getindex(result, href_xpath, 0, None)
@@ -357,7 +341,7 @@ def response(resp):
                 continue
             content = extract_text(eval_xpath_getindex(result, content_xpath, 0, default=None), allow_none=True)
             if content is None:
-                logger.debug('ingoring item from the result_xpath list: missing content of title "%s"', title)
+                logger.debug('ignoring item from the result_xpath list: missing content of title "%s"', title)
                 continue
 
             logger.debug('add link to results: %s', title)

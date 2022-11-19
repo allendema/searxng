@@ -5,20 +5,23 @@
 # Translators:
 # Madis Otenurm, 2020
 # Madis Otenurm, 2019
+# Markus Heiser <markus.heiser@darmarit.de>, 2022.
+# dogyx <aaronloit@tuta.io>, 2022.
 msgid ""
 msgstr ""
-"Project-Id-Version:  searx\n"
+"Project-Id-Version: searx\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-08 18:28+0000\n"
-"PO-Revision-Date: 2022-05-13 07:20+0000\n"
-"Last-Translator: Mico Hautaluoma <m@mha.fi>\n"
+"POT-Creation-Date: 2022-10-14 14:11+0000\n"
+"PO-Revision-Date: 2022-10-28 07:18+0000\n"
+"Last-Translator: Markus Heiser <markus.heiser@darmarit.de>\n"
+"Language-Team: Estonian <https://weblate.bubu1.eu/projects/searxng/searxng/"
+"et/>\n"
 "Language: et\n"
-"Language-Team: Estonian "
-"<https://weblate.bubu1.eu/projects/searxng/searxng/et/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 "Generated-By: Babel 2.10.3\n"
 
 #. CONSTANT_NAMES['DEFAULT_GROUP_NAME']
@@ -126,6 +129,11 @@ msgstr "tarkvara wikid"
 msgid "web"
 msgstr "web"
 
+#. CATEGORY_GROUPS['SCIENTIFIC PUBLICATIONS']
+#: searx/searxng.msg
+msgid "scientific publications"
+msgstr "teaduslikud väljaanded"
+
 #. STYLE_NAMES['AUTO']
 #: searx/searxng.msg
 msgid "auto"
@@ -141,21 +149,25 @@ msgstr "herge"
 msgid "dark"
 msgstr "pime"
 
-#: searx/webapp.py:165
+#: searx/webapp.py:164
 msgid "timeout"
 msgstr "aeg maha"
 
-#: searx/webapp.py:166
+#: searx/webapp.py:165
 msgid "parsing error"
 msgstr "parsimise viga"
 
-#: searx/webapp.py:167
+#: searx/webapp.py:166
 msgid "HTTP protocol error"
 msgstr "HTTP-protokolli viga"
 
-#: searx/webapp.py:168
+#: searx/webapp.py:167
 msgid "network error"
 msgstr "võrguviga"
+
+#: searx/webapp.py:168
+msgid "SSL error: certificate validation has failed"
+msgstr "SSL viga: sertifikaadi valideerimine ebaõnnestus"
 
 #: searx/webapp.py:170
 msgid "unexpected crash"
@@ -189,42 +201,42 @@ msgstr "ligipääs keelatud"
 msgid "server API error"
 msgstr "serveri API viga"
 
-#: searx/webapp.py:363
+#: searx/webapp.py:365
 msgid "No item found"
 msgstr "Üksust ei leitud"
 
-#: searx/engines/qwant.py:212
-#: searx/templates/simple/result_templates/images.html:20 searx/webapp.py:365
+#: searx/engines/qwant.py:217
+#: searx/templates/simple/result_templates/images.html:20 searx/webapp.py:367
 msgid "Source"
 msgstr "Allikas"
 
-#: searx/webapp.py:367
+#: searx/webapp.py:369
 msgid "Error loading the next page"
 msgstr "Viga järgmise lehekülje laadimisel"
 
-#: searx/webapp.py:516 searx/webapp.py:960
+#: searx/webapp.py:521 searx/webapp.py:953
 msgid "Invalid settings, please edit your preferences"
 msgstr "Sobimatud seaded, palun muuda oma eelistusi"
 
-#: searx/webapp.py:532
+#: searx/webapp.py:537
 msgid "Invalid settings"
 msgstr "Sobimatud seaded"
 
-#: searx/webapp.py:609 searx/webapp.py:685
+#: searx/webapp.py:614 searx/webapp.py:690
 msgid "search error"
 msgstr "otsingu viga"
 
-#: searx/webapp.py:731
+#: searx/webapp.py:852
+msgid "Suspended"
+msgstr "Peatatud"
+
+#: searx/webutils.py:161
 msgid "{minutes} minute(s) ago"
 msgstr "{minutes} minut(it) tagasi"
 
-#: searx/webapp.py:733
+#: searx/webutils.py:162
 msgid "{hours} hour(s), {minutes} minute(s) ago"
 msgstr "{hours} tund(i), {minutes} minut(it) tagasi"
-
-#: searx/webapp.py:859
-msgid "Suspended"
-msgstr "Peatatud"
 
 #: searx/answerers/random/answerer.py:67
 msgid "Random value generator"
@@ -254,13 +266,51 @@ msgstr "{title} (VANANENUD)"
 msgid "This entry has been superseded by"
 msgstr "See üksus on asendatud"
 
-#: searx/engines/pubmed.py:78
-msgid "No abstract is available for this publication."
-msgstr "Selle väljaande jaoks pole abstraktset."
-
-#: searx/engines/qwant.py:214
+#: searx/engines/qwant.py:219
 msgid "Channel"
 msgstr "Kanal"
+
+#: searx/engines/semantic_scholar.py:81
+msgid ""
+"{numCitations} citations from the year {firstCitationVelocityYear} to "
+"{lastCitationVelocityYear}"
+msgstr ""
+
+#: searx/engines/tineye.py:40
+msgid ""
+"Could not read that image url. This may be due to an unsupported file "
+"format. TinEye only supports images that are JPEG, PNG, GIF, BMP, TIFF or"
+" WebP."
+msgstr ""
+"Ei saanud lugeda seda pildi linki. See võib olla faili formaadi pärast. "
+"TinEye ainult lubab ainult järgmisi formaate: JPEG, PNG, GIF, BMP, TIFF "
+"või WebP."
+
+#: searx/engines/tineye.py:46
+msgid ""
+"The image is too simple to find matches. TinEye requires a basic level of"
+" visual detail to successfully identify matches."
+msgstr ""
+
+#: searx/engines/tineye.py:52
+msgid "The image could not be downloaded."
+msgstr "Pilti ei saanud alla laadida."
+
+#: searx/engines/wttr.py:101
+msgid "Morning"
+msgstr ""
+
+#: searx/engines/wttr.py:101
+msgid "Noon"
+msgstr ""
+
+#: searx/engines/wttr.py:101
+msgid "Evening"
+msgstr ""
+
+#: searx/engines/wttr.py:101
+msgid "Night"
+msgstr ""
 
 #: searx/plugins/hash_plugin.py:24
 msgid "Converts strings to different hash digests."
@@ -305,8 +355,8 @@ msgstr ""
 " valimiseks. (Nõuab JavaScripti)"
 
 #: searx/plugins/self_info.py:20
-msgid "Self Informations"
-msgstr "Self Informatsioon"
+msgid "Self Information"
+msgstr ""
 
 #: searx/plugins/self_info.py:21
 msgid ""
@@ -315,6 +365,30 @@ msgid ""
 msgstr ""
 "Kuvab sinu IP'd, kui päringuks on \"ip\" ning kasutajaagenti, kui "
 "päringuks on \"user agent\"."
+
+#: searx/plugins/tor_check.py:25
+msgid "Tor check plugin"
+msgstr ""
+
+#: searx/plugins/tor_check.py:28
+msgid ""
+"This plugin checks if the address of the request is a TOR exit node, and "
+"informs the user if it is, like check.torproject.org but from searxng."
+msgstr ""
+
+#: searx/plugins/tor_check.py:62
+msgid ""
+"The TOR exit node list (https://check.torproject.org/exit-addresses) is "
+"unreachable."
+msgstr ""
+
+#: searx/plugins/tor_check.py:78
+msgid "You are using TOR. Your IP address seems to be: {ip_address}."
+msgstr "Te kasutate TORi. Teie IP aadress paistab olevat : {ip_address}."
+
+#: searx/plugins/tor_check.py:84
+msgid "You are not using TOR. Your IP address seems to be: {ip_address}."
+msgstr "Te ei kasuta TORi. Teie IP aadress paistab olevat: {ip_adress}."
 
 #: searx/plugins/tracker_url_remover.py:29
 msgid "Tracker URL remover"
@@ -352,11 +426,11 @@ msgstr "otsinguleht"
 
 #: searx/templates/simple/base.html:46
 msgid "About"
-msgstr ""
+msgstr "Teave"
 
 #: searx/templates/simple/base.html:50
 msgid "Donate"
-msgstr ""
+msgstr "Anneta"
 
 #: searx/templates/simple/base.html:54
 #: searx/templates/simple/preferences.html:99
@@ -368,8 +442,8 @@ msgid "Powered by"
 msgstr "Põhineb tarkvaral"
 
 #: searx/templates/simple/base.html:64
-msgid "a privacy-respecting, hackable metasearch engine"
-msgstr "privaatsust austaval, häkitaval metaotsingu mootoril"
+msgid "a privacy-respecting, open metasearch engine"
+msgstr ""
 
 #: searx/templates/simple/base.html:65
 msgid "Source code"
@@ -390,7 +464,7 @@ msgstr "Avalikud eksemplarid"
 
 #: searx/templates/simple/base.html:72
 msgid "Privacy policy"
-msgstr ""
+msgstr "Privaatsus poliitika"
 
 #: searx/templates/simple/base.html:75
 msgid "Contact instance maintainer"
@@ -406,6 +480,7 @@ msgstr "Pikkus"
 
 #: searx/templates/simple/macros.html:37
 #: searx/templates/simple/result_templates/images.html:18
+#: searx/templates/simple/result_templates/paper.html:6
 msgid "Author"
 msgstr "Autor"
 
@@ -423,7 +498,7 @@ msgstr ""
 
 #: searx/templates/simple/new_issue.html:66
 msgid "Please check for existing bugs about this engine on GitHub"
-msgstr ""
+msgstr "Palun uurige olemasolevate selle otsingumootori tõrgete kohta GitHubist"
 
 #: searx/templates/simple/new_issue.html:69
 msgid "I confirm there is no existing bug about the issue I encounter"
@@ -431,7 +506,7 @@ msgstr ""
 
 #: searx/templates/simple/new_issue.html:71
 msgid "If this is a public instance, please specify the URL in the bug report"
-msgstr ""
+msgstr "Palun täpsustage URL veateates, kui tegemist on avaliku eksemplariga"
 
 #: searx/templates/simple/new_issue.html:72
 msgid "Submit a new issue on Github including the above information"
@@ -449,17 +524,17 @@ msgid "View error logs and submit a bug report"
 msgstr "Vaadake vealogisid ja esitage veateade"
 
 #: searx/templates/simple/preferences.html:53
-#: searx/templates/simple/stats.html:67
+#: searx/templates/simple/stats.html:64
 msgid "Median"
 msgstr "Mediaan"
 
 #: searx/templates/simple/preferences.html:54
-#: searx/templates/simple/stats.html:73
+#: searx/templates/simple/stats.html:70
 msgid "P80"
 msgstr "P80"
 
 #: searx/templates/simple/preferences.html:55
-#: searx/templates/simple/stats.html:79
+#: searx/templates/simple/stats.html:76
 msgid "P95"
 msgstr "P95"
 
@@ -623,13 +698,10 @@ msgstr "HTTP meetod"
 
 #: searx/templates/simple/preferences.html:264
 msgid ""
-"Change how forms are submited, <a "
+"Change how forms are submitted, <a "
 "href=\"http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods\""
 " rel=\"external\">learn more about request methods</a>"
 msgstr ""
-"Muuda viisi, kuidas väljad edastatakse, <a "
-"href=\"http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods\""
-" rel=\"external\">loe taotlusmeetodite kohta lisaks</a>"
 
 #: searx/templates/simple/preferences.html:269
 msgid "Image proxy"
@@ -892,67 +964,63 @@ msgstr "Skoorid"
 msgid "Result count"
 msgstr "Tulemuste arv"
 
-#: searx/templates/simple/stats.html:38
-msgid "Scores per result"
-msgstr "Skoorid tulemuste kohta"
-
-#: searx/templates/simple/stats.html:62
+#: searx/templates/simple/stats.html:59
 msgid "Total"
 msgstr "Kokku"
 
-#: searx/templates/simple/stats.html:63
+#: searx/templates/simple/stats.html:60
 msgid "HTTP"
 msgstr "HTTP"
 
-#: searx/templates/simple/stats.html:64
+#: searx/templates/simple/stats.html:61
 msgid "Processing"
 msgstr "Töötlemine"
 
-#: searx/templates/simple/stats.html:102
+#: searx/templates/simple/stats.html:99
 msgid "Warnings"
 msgstr "Hoiatused"
 
-#: searx/templates/simple/stats.html:102
+#: searx/templates/simple/stats.html:99
 msgid "Errors and exceptions"
 msgstr "Vead ja erandid"
 
-#: searx/templates/simple/stats.html:108
+#: searx/templates/simple/stats.html:105
 msgid "Exception"
 msgstr "Erand"
 
-#: searx/templates/simple/stats.html:110
+#: searx/templates/simple/stats.html:107
 msgid "Message"
 msgstr "Sõnum"
 
-#: searx/templates/simple/stats.html:112
+#: searx/templates/simple/stats.html:109
 msgid "Percentage"
 msgstr "Protsentuaalne osakaal"
 
-#: searx/templates/simple/stats.html:114
+#: searx/templates/simple/stats.html:111
 msgid "Parameter"
 msgstr "Parameeter"
 
-#: searx/templates/simple/stats.html:122
+#: searx/templates/simple/stats.html:119
 msgid "Filename"
 msgstr "Failinimi"
 
-#: searx/templates/simple/stats.html:123
+#: searx/templates/simple/stats.html:120
 msgid "Function"
 msgstr "Funktsioon"
 
-#: searx/templates/simple/stats.html:124
+#: searx/templates/simple/stats.html:121
 msgid "Code"
 msgstr "Kood"
 
-#: searx/templates/simple/stats.html:131
+#: searx/templates/simple/stats.html:128
 msgid "Checker"
 msgstr "Kontrollida"
 
-#: searx/templates/simple/stats.html:134
+#: searx/templates/simple/stats.html:131
 msgid "Failed test"
 msgstr "Ebaõnnestunud test"
 
-#: searx/templates/simple/stats.html:135
+#: searx/templates/simple/stats.html:132
 msgid "Comment(s)"
 msgstr "Kommentaar(id)"
 
@@ -1040,6 +1108,50 @@ msgstr "kuva kaart"
 #: searx/templates/simple/result_templates/map.html:43
 msgid "hide map"
 msgstr "peida kaart"
+
+#: searx/templates/simple/result_templates/paper.html:5
+msgid "Published date"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:9
+msgid "Journal"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:22
+msgid "Editor"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:23
+msgid "Publisher"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:24
+msgid "Type"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:25
+msgid "Tags"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:26
+msgid "DOI"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:27
+msgid "ISSN"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:28
+msgid "ISBN"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:33
+msgid "PDF"
+msgstr ""
+
+#: searx/templates/simple/result_templates/paper.html:34
+msgid "HTML"
+msgstr ""
 
 #: searx/templates/simple/result_templates/torrent.html:6
 msgid "magnet link"
@@ -1338,3 +1450,26 @@ msgstr "peida video"
 #~ msgid "preferences"
 #~ msgstr "eelistused"
 
+#~ msgid "Scores per result"
+#~ msgstr "Skoorid tulemuste kohta"
+
+#~ msgid "a privacy-respecting, hackable metasearch engine"
+#~ msgstr "privaatsust austaval, häkitaval metaotsingu mootoril"
+
+#~ msgid "No abstract is available for this publication."
+#~ msgstr "Selle väljaande jaoks pole abstraktset."
+
+#~ msgid "Self Informations"
+#~ msgstr "Self Informatsioon"
+
+#~ msgid ""
+#~ "Change how forms are submited, <a "
+#~ "href=\"http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods\""
+#~ " rel=\"external\">learn more about request "
+#~ "methods</a>"
+#~ msgstr ""
+#~ "Muuda viisi, kuidas väljad edastatakse, "
+#~ "<a "
+#~ "href=\"http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods\""
+#~ " rel=\"external\">loe taotlusmeetodite kohta "
+#~ "lisaks</a>"

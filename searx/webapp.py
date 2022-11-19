@@ -12,7 +12,6 @@ import os
 import sys
 import base64
 
-from datetime import datetime, timedelta
 from timeit import default_timer
 from html import escape
 from io import StringIO
@@ -45,7 +44,6 @@ from flask.json import jsonify
 from flask_babel import (
     Babel,
     gettext,
-    format_date,
     format_decimal,
 )
 
@@ -79,6 +77,7 @@ from searx.webutils import (
     is_hmac_of,
     is_flask_run_cmdline,
     group_engines_in_tab,
+    searxng_l10n_timespan,
 )
 from searx.webadapter import (
     get_search_query_from_webapp,
@@ -121,6 +120,7 @@ from searx.locales import (
 # renaming names from searx imports ...
 from searx.autocomplete import search_autocomplete, backends as autocomplete_backends
 from searx.languages import language_codes as languages
+from searx.shared.redisdb import initialize as redis_initialize
 from searx.search import SearchWithPlugins, initialize as search_initialize
 from searx.network import stream as http_stream, set_context_network_name
 from searx.search.checker import get_result as checker_get_result
@@ -145,7 +145,7 @@ result_templates = get_result_templates(templates_path)
 
 STATS_SORT_PARAMETERS = {
     'name': (False, 'name', ''),
-    'score': (True, 'score', 0),
+    'score': (True, 'score_per_result', 0),
     'result_count': (True, 'result_count', 0),
     'time': (False, 'total', 0),
     'reliability': (False, 'reliability', 100),
@@ -166,6 +166,7 @@ timeout_text = gettext('timeout')
 parsing_error_text = gettext('parsing error')
 http_protocol_error_text = gettext('HTTP protocol error')
 network_error_text = gettext('network error')
+ssl_cert_error_text = gettext("SSL error: certificate validation has failed")
 exception_classname_to_text = {
     None: gettext('unexpected crash'),
     'timeout': timeout_text,
@@ -190,6 +191,8 @@ exception_classname_to_text = {
     'KeyError': parsing_error_text,
     'json.decoder.JSONDecodeError': parsing_error_text,
     'lxml.etree.ParserError': parsing_error_text,
+    'ssl.SSLCertVerificationError': ssl_cert_error_text,  # for Python > 3.7
+    'ssl.CertificateError': ssl_cert_error_text,  # for Python 3.7
 }
 
 
@@ -245,7 +248,7 @@ def code_highlighter(codelines, language=None):
         language = 'text'
 
     try:
-        # find lexer by programing language
+        # find lexer by programming language
         lexer = get_lexer_by_name(language, stripall=True)
 
     except Exception as e:  # pylint: disable=broad-except
@@ -315,16 +318,16 @@ def custom_url_for(endpoint: str, **values):
     return url_for(endpoint, **values) + suffix
 
 
-def proxify(url: str):
+def morty_proxify(url: str):
     if url.startswith('//'):
         url = 'https:' + url
 
-    if not settings.get('result_proxy'):
+    if not settings['result_proxy']['url']:
         return url
 
     url_params = dict(mortyurl=url)
 
-    if settings['result_proxy'].get('key'):
+    if settings['result_proxy']['key']:
         url_params['mortyhash'] = hmac.new(settings['result_proxy']['key'], url.encode(), hashlib.sha256).hexdigest()
 
     return '{0}?{1}'.format(settings['result_proxy']['url'], urlencode(url_params))
@@ -349,8 +352,8 @@ def image_proxify(url: str):
             return url
         return None
 
-    if settings.get('result_proxy'):
-        return proxify(url)
+    if settings['result_proxy']['url']:
+        return morty_proxify(url)
 
     h = new_hmac(settings['server']['secret_key'], url.encode())
 
@@ -450,6 +453,7 @@ def render(template_name: str, **kwargs):
     kwargs['instance_name'] = get_setting('general.instance_name')
     kwargs['searx_version'] = VERSION_STRING
     kwargs['searx_git_url'] = GIT_URL
+    kwargs['enable_metrics'] = get_setting('general.enable_metrics')
     kwargs['get_setting'] = get_setting
     kwargs['get_pretty_url'] = get_pretty_url
 
@@ -462,9 +466,11 @@ def render(template_name: str, **kwargs):
     # helpers to create links to other pages
     kwargs['url_for'] = custom_url_for  # override url_for function in templates
     kwargs['image_proxify'] = image_proxify
-    kwargs['proxify'] = proxify if settings.get('result_proxy', {}).get('url') else None
-    kwargs['proxify_results'] = settings.get('result_proxy', {}).get('proxify_results', True)
+    kwargs['proxify'] = morty_proxify if settings['result_proxy']['url'] is not None else None
+    kwargs['proxify_results'] = settings['result_proxy']['proxify_results']
+    kwargs['cache_url'] = settings['ui']['cache_url']
     kwargs['get_result_template'] = get_result_template
+    kwargs['doi_resolver'] = get_doi_resolver(request.preferences)
     kwargs['opensearch_url'] = (
         url_for('opensearch')
         + '?'
@@ -716,25 +722,13 @@ def search():
         if 'url' in result:
             result['pretty_url'] = prettify_url(result['url'])
 
-        # TODO, check if timezone is calculated right  # pylint: disable=fixme
         if result.get('publishedDate'):  # do not try to get a date from an empty string or a None type
             try:  # test if publishedDate >= 1900 (datetime module bug)
                 result['pubdate'] = result['publishedDate'].strftime('%Y-%m-%d %H:%M:%S%z')
             except ValueError:
                 result['publishedDate'] = None
             else:
-                if result['publishedDate'].replace(tzinfo=None) >= datetime.now() - timedelta(days=1):
-                    timedifference = datetime.now() - result['publishedDate'].replace(tzinfo=None)
-                    minutes = int((timedifference.seconds / 60) % 60)
-                    hours = int(timedifference.seconds / 60 / 60)
-                    if hours == 0:
-                        result['publishedDate'] = gettext('{minutes} minute(s) ago').format(minutes=minutes)
-                    else:
-                        result['publishedDate'] = gettext('{hours} hour(s), {minutes} minute(s) ago').format(
-                            hours=hours, minutes=minutes
-                        )
-                else:
-                    result['publishedDate'] = format_date(result['publishedDate'])
+                result['publishedDate'] = searxng_l10n_timespan(result['publishedDate'])
 
         # set result['open_group'] = True when the template changes from the previous result
         # set result['close_group'] = True when the template changes on the next result
@@ -1282,19 +1276,17 @@ Disallow: /*?*q=*
 
 @app.route('/opensearch.xml', methods=['GET'])
 def opensearch():
-    method = 'post'
-
-    if request.preferences.get_value('method') == 'GET':
-        method = 'get'
+    method = request.preferences.get_value('method')
+    autocomplete = request.preferences.get_value('autocomplete')
 
     # chrome/chromium only supports HTTP GET....
     if request.headers.get('User-Agent', '').lower().find('webkit') >= 0:
-        method = 'get'
+        method = 'GET'
 
-    autocomplete = request.preferences.get_value('autocomplete')
+    if method not in ('POST', 'GET'):
+        method = 'POST'
 
     ret = render('opensearch.xml', opensearch_method=method, autocomplete=autocomplete)
-
     resp = Response(response=ret, status=200, mimetype="application/opensearchdescription+xml")
     return resp
 
@@ -1303,7 +1295,7 @@ def opensearch():
 def favicon():
     theme = request.preferences.get_value("theme")
     return send_from_directory(
-        os.path.join(app.root_path, settings['ui']['static_path'], 'themes', theme, 'img'),
+        os.path.join(app.root_path, settings['ui']['static_path'], 'themes', theme, 'img'),  # pyright: ignore
         'favicon.png',
         mimetype='image/vnd.microsoft.icon',
     )
@@ -1393,6 +1385,7 @@ werkzeug_reloader = flask_run_development or (searx_debug and __name__ == "__mai
 if not werkzeug_reloader or (werkzeug_reloader and os.environ.get("WERKZEUG_RUN_MAIN") == "true"):
     locales_initialize()
     _INFO_PAGES = infopage.InfoPageSet()
+    redis_initialize()
     plugin_initialize(app)
     search_initialize(enable_checker=True, check_network=True, enable_metrics=settings['general']['enable_metrics'])
 
