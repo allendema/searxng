@@ -22,7 +22,7 @@ from urllib.parse import urlencode
 
 from lxml import html
 from searx.utils import extract_text, extract_url, eval_xpath, eval_xpath_list
-from searx.network import raise_for_httperror
+from searx import network
 
 search_url = None
 """
@@ -196,7 +196,7 @@ def response(resp):  # pylint: disable=too-many-branches
     if no_result_for_http_status and resp.status_code in no_result_for_http_status:
         return []
 
-    raise_for_httperror(resp)
+    network.raise_for_httperror(resp)
 
     results = []
     dom = html.fromstring(resp.text)
