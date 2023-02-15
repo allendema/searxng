@@ -160,6 +160,14 @@ SCHEMA = {
         'languages': SettingSublistValue(LANGUAGE_CODES, LANGUAGE_CODES),
         'ban_time_on_fail': SettingsValue(numbers.Real, 5),
         'max_ban_time_on_fail': SettingsValue(numbers.Real, 120),
+        'suspended_times': {
+            'SearxEngineAccessDenied': SettingsValue(numbers.Real, 86400),
+            'SearxEngineCaptcha': SettingsValue(numbers.Real, 86400),
+            'SearxEngineTooManyRequests': SettingsValue(numbers.Real, 3600),
+            'cf_SearxEngineCaptcha': SettingsValue(numbers.Real, 1296000),
+            'cf_SearxEngineAccessDenied': SettingsValue(numbers.Real, 86400),
+            'recaptcha_SearxEngineCaptcha': SettingsValue(numbers.Real, 604800),
+        },
         'formats': SettingsValue(list, OUTPUT_FORMATS),
     },
     'server': {
@@ -174,7 +182,7 @@ SCHEMA = {
         'default_http_headers': SettingsValue(dict, {}),
     },
     'redis': {
-        'url': SettingsValue((None, False, str), False),
+        'url': SettingsValue((None, False, str), False, 'SEARXNG_REDIS_URL'),
     },
     'ui': {
         'static_path': SettingsDirectoryValue(str, os.path.join(searx_dir, 'static')),

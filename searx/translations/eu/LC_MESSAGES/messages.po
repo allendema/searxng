@@ -8,21 +8,23 @@
 # beriain, 2020-2021
 # Txopi <txopi@ikusimakusi.eus>, 2016
 # beriain <soila@disroot.org>, 2022.
+# Markus Heiser <markus.heiser@darmarit.de>, 2023.
 msgid ""
 msgstr ""
-"Project-Id-Version:  searx\n"
+"Project-Id-Version: searx\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-14 14:11+0000\n"
-"PO-Revision-Date: 2022-09-11 22:50+0000\n"
-"Last-Translator: beriain <soila@disroot.org>\n"
+"POT-Creation-Date: 2022-12-12 07:18+0000\n"
+"PO-Revision-Date: 2023-01-13 07:14+0000\n"
+"Last-Translator: Markus Heiser <markus.heiser@darmarit.de>\n"
+"Language-Team: Basque <https://weblate.bubu1.eu/projects/searxng/searxng/eu/>"
+"\n"
 "Language: eu\n"
-"Language-Team: Basque "
-"<https://weblate.bubu1.eu/projects/searxng/searxng/eu/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+"Generated-By: Babel 2.11.0\n"
 
 #. CONSTANT_NAMES['DEFAULT_GROUP_NAME']
 #: searx/searxng.msg
@@ -127,7 +129,7 @@ msgstr "software wikiak"
 #. CATEGORY_GROUPS['WEB']
 #: searx/searxng.msg
 msgid "web"
-msgstr ""
+msgstr "web"
 
 #. CATEGORY_GROUPS['SCIENTIFIC PUBLICATIONS']
 #: searx/searxng.msg
@@ -149,84 +151,84 @@ msgstr "argia"
 msgid "dark"
 msgstr "iluna"
 
-#: searx/webapp.py:164
+#: searx/webapp.py:165
 msgid "timeout"
 msgstr "itxarote-denbora"
 
-#: searx/webapp.py:165
+#: searx/webapp.py:166
 msgid "parsing error"
 msgstr "analizatze errorea"
 
-#: searx/webapp.py:166
+#: searx/webapp.py:167
 msgid "HTTP protocol error"
 msgstr "HTTP protokoloaren errorea"
 
-#: searx/webapp.py:167
+#: searx/webapp.py:168
 msgid "network error"
 msgstr "sareko errorea"
 
-#: searx/webapp.py:168
+#: searx/webapp.py:169
 msgid "SSL error: certificate validation has failed"
 msgstr ""
 
-#: searx/webapp.py:170
+#: searx/webapp.py:171
 msgid "unexpected crash"
 msgstr "ustekabeko kraskatzea"
 
-#: searx/webapp.py:177
+#: searx/webapp.py:178
 msgid "HTTP error"
 msgstr "HTTP errorea"
 
-#: searx/webapp.py:178
+#: searx/webapp.py:179
 msgid "HTTP connection error"
 msgstr "HTTP konexioaren errorea"
 
-#: searx/webapp.py:184
+#: searx/webapp.py:185
 msgid "proxy error"
 msgstr "proxy-aren errorea"
 
-#: searx/webapp.py:185
+#: searx/webapp.py:186
 msgid "CAPTCHA"
 msgstr "CAPTCHA"
 
-#: searx/webapp.py:186
+#: searx/webapp.py:187
 msgid "too many requests"
 msgstr "eskaera gehiegi"
 
-#: searx/webapp.py:187
+#: searx/webapp.py:188
 msgid "access denied"
 msgstr "sarbidea ukatua"
 
-#: searx/webapp.py:188
+#: searx/webapp.py:189
 msgid "server API error"
 msgstr "API zerbitzariaren errorea"
 
-#: searx/webapp.py:365
+#: searx/webapp.py:366
 msgid "No item found"
 msgstr "Ez da elementurik aurkitu"
 
 #: searx/engines/qwant.py:217
-#: searx/templates/simple/result_templates/images.html:20 searx/webapp.py:367
+#: searx/templates/simple/result_templates/images.html:20 searx/webapp.py:368
 msgid "Source"
 msgstr "Iturria"
 
-#: searx/webapp.py:369
+#: searx/webapp.py:370
 msgid "Error loading the next page"
 msgstr "Errorea hurrengo orrialdea kargatzean"
 
-#: searx/webapp.py:521 searx/webapp.py:953
+#: searx/webapp.py:522 searx/webapp.py:954
 msgid "Invalid settings, please edit your preferences"
 msgstr "Ezarpen ez baliodunak, mesedez editatu zure hobespenak"
 
-#: searx/webapp.py:537
+#: searx/webapp.py:538
 msgid "Invalid settings"
 msgstr "Ezarpen ez baliodunak"
 
-#: searx/webapp.py:614 searx/webapp.py:690
+#: searx/webapp.py:615 searx/webapp.py:691
 msgid "search error"
 msgstr "bilaketa akatsa"
 
-#: searx/webapp.py:852
+#: searx/webapp.py:853
 msgid "Suspended"
 msgstr ""
 
@@ -307,6 +309,14 @@ msgstr ""
 
 #: searx/engines/wttr.py:101
 msgid "Night"
+msgstr ""
+
+#: searx/plugins/autodetect_search_language.py:79
+msgid "Autodetect search language"
+msgstr ""
+
+#: searx/plugins/autodetect_search_language.py:80
+msgid "Automatically detect the query search language and switch to it."
 msgstr ""
 
 #: searx/plugins/hash_plugin.py:24
@@ -1468,4 +1478,3 @@ msgstr "ezkutatu bideoa"
 #~ "href=\"http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods\""
 #~ " rel=\"external\">ikasi gehiago eskaera metodoen"
 #~ " inguruan</a>"
-

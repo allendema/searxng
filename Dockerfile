@@ -36,7 +36,6 @@ RUN apk add --no-cache -t build-dependencies \
     su-exec \
     python3 \
     py3-pip \
-    py3-numpy \
     libxml2 \
     libxslt \
     openssl \
@@ -44,8 +43,6 @@ RUN apk add --no-cache -t build-dependencies \
     uwsgi \
     uwsgi-python3 \
     brotli \
- && pip3 install --no-cache setuptools wheel \
- && sed -i s/fasttext-wheel/fasttext/ requirements.txt \
  && pip3 install --no-cache -r requirements.txt \
  && apk del build-dependencies \
  && rm -rf /root/.cache
@@ -68,6 +65,7 @@ RUN su searxng -c "/usr/bin/python3 -m compileall -q searx" \
 ARG LABEL_DATE=
 ARG GIT_URL=unknown
 ARG SEARXNG_GIT_VERSION=unknown
+ARG SEARXNG_DOCKER_TAG=unknown
 ARG LABEL_VCS_REF=
 ARG LABEL_VCS_URL=
 LABEL maintainer="searxng <${GIT_URL}>" \
@@ -82,7 +80,7 @@ LABEL maintainer="searxng <${GIT_URL}>" \
       org.label-schema.build-date="${LABEL_DATE}" \
       org.label-schema.usage="https://github.com/searxng/searxng-docker" \
       org.opencontainers.image.title="searxng" \
-      org.opencontainers.image.version="${SEARXNG_GIT_VERSION}" \
+      org.opencontainers.image.version="${SEARXNG_DOCKER_TAG}" \
       org.opencontainers.image.url="${LABEL_VCS_URL}" \
       org.opencontainers.image.revision=${LABEL_VCS_REF} \
       org.opencontainers.image.source=${LABEL_VCS_URL} \

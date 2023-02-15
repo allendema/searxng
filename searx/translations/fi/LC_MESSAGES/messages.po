@@ -4,23 +4,24 @@
 #
 # Translators:
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2017
-# Markus Heiser <markus.heiser@darmarit.de>, 2022.
+# Markus Heiser <markus.heiser@darmarit.de>, 2022, 2023.
 # Mico Hautaluoma <m@mha.fi>, 2022.
 msgid ""
 msgstr ""
-"Project-Id-Version:  searx\n"
+"Project-Id-Version: searx\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-14 14:11+0000\n"
-"PO-Revision-Date: 2022-10-11 13:31+0000\n"
+"POT-Creation-Date: 2022-12-12 07:18+0000\n"
+"PO-Revision-Date: 2023-01-13 07:14+0000\n"
 "Last-Translator: Markus Heiser <markus.heiser@darmarit.de>\n"
+"Language-Team: Finnish <https://weblate.bubu1.eu/projects/searxng/searxng/fi/"
+">\n"
 "Language: fi\n"
-"Language-Team: Finnish "
-"<https://weblate.bubu1.eu/projects/searxng/searxng/fi/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+"Generated-By: Babel 2.11.0\n"
 
 #. CONSTANT_NAMES['DEFAULT_GROUP_NAME']
 #: searx/searxng.msg
@@ -147,84 +148,84 @@ msgstr "vaalea"
 msgid "dark"
 msgstr "tumma"
 
-#: searx/webapp.py:164
+#: searx/webapp.py:165
 msgid "timeout"
 msgstr "aikakatkaistu"
 
-#: searx/webapp.py:165
+#: searx/webapp.py:166
 msgid "parsing error"
 msgstr "jäsentämisvirhe"
 
-#: searx/webapp.py:166
+#: searx/webapp.py:167
 msgid "HTTP protocol error"
 msgstr "HTTP-protokollavirhe"
 
-#: searx/webapp.py:167
+#: searx/webapp.py:168
 msgid "network error"
 msgstr "verkkovirhe"
 
-#: searx/webapp.py:168
+#: searx/webapp.py:169
 msgid "SSL error: certificate validation has failed"
-msgstr ""
+msgstr "SSL-virhe: sertifikaatin vahvistus epäonnistui"
 
-#: searx/webapp.py:170
+#: searx/webapp.py:171
 msgid "unexpected crash"
 msgstr "odottamaton kaatuminen"
 
-#: searx/webapp.py:177
+#: searx/webapp.py:178
 msgid "HTTP error"
 msgstr "HTTP-virhe"
 
-#: searx/webapp.py:178
+#: searx/webapp.py:179
 msgid "HTTP connection error"
 msgstr "HTTP-yhteysvirhe"
 
-#: searx/webapp.py:184
+#: searx/webapp.py:185
 msgid "proxy error"
 msgstr "proxy-virhe"
 
-#: searx/webapp.py:185
+#: searx/webapp.py:186
 msgid "CAPTCHA"
 msgstr "CAPTCHA"
 
-#: searx/webapp.py:186
+#: searx/webapp.py:187
 msgid "too many requests"
 msgstr "liian monta pyyntöä"
 
-#: searx/webapp.py:187
+#: searx/webapp.py:188
 msgid "access denied"
 msgstr "pääsy kielletty"
 
-#: searx/webapp.py:188
+#: searx/webapp.py:189
 msgid "server API error"
 msgstr "palvelimen API-virhe"
 
-#: searx/webapp.py:365
+#: searx/webapp.py:366
 msgid "No item found"
 msgstr "Tietuetta ei löytynyt"
 
 #: searx/engines/qwant.py:217
-#: searx/templates/simple/result_templates/images.html:20 searx/webapp.py:367
+#: searx/templates/simple/result_templates/images.html:20 searx/webapp.py:368
 msgid "Source"
 msgstr "Lähde"
 
-#: searx/webapp.py:369
+#: searx/webapp.py:370
 msgid "Error loading the next page"
 msgstr "Virhe ladattaessa seuraavaa sivua"
 
-#: searx/webapp.py:521 searx/webapp.py:953
+#: searx/webapp.py:522 searx/webapp.py:954
 msgid "Invalid settings, please edit your preferences"
 msgstr "Virheelliset asetukset, muokkaa siis asetuksia"
 
-#: searx/webapp.py:537
+#: searx/webapp.py:538
 msgid "Invalid settings"
 msgstr "Virheelliset asetukset"
 
-#: searx/webapp.py:614 searx/webapp.py:690
+#: searx/webapp.py:615 searx/webapp.py:691
 msgid "search error"
 msgstr "hakuvirhe"
 
-#: searx/webapp.py:852
+#: searx/webapp.py:853
 msgid "Suspended"
 msgstr "Keskeytetty"
 
@@ -273,6 +274,8 @@ msgid ""
 "{numCitations} citations from the year {firstCitationVelocityYear} to "
 "{lastCitationVelocityYear}"
 msgstr ""
+"{numCitations} Sitaatit vuodesta {firstCitationVelocityYear} vuoteen "
+"{lastCitationVelocityYear}"
 
 #: searx/engines/tineye.py:40
 msgid ""
@@ -311,6 +314,14 @@ msgstr "Ilta"
 #: searx/engines/wttr.py:101
 msgid "Night"
 msgstr "Yö"
+
+#: searx/plugins/autodetect_search_language.py:79
+msgid "Autodetect search language"
+msgstr "Tunnista hakukieli automaattisesti"
+
+#: searx/plugins/autodetect_search_language.py:80
+msgid "Automatically detect the query search language and switch to it."
+msgstr ""
 
 #: searx/plugins/hash_plugin.py:24
 msgid "Converts strings to different hash digests."
@@ -447,7 +458,7 @@ msgstr "Taustavoimana"
 
 #: searx/templates/simple/base.html:64
 msgid "a privacy-respecting, open metasearch engine"
-msgstr ""
+msgstr "yksityisyyttä kunnioittava, avoin metahakukone"
 
 #: searx/templates/simple/base.html:65
 msgid "Source code"
@@ -1120,11 +1131,11 @@ msgstr "piilota kartta"
 
 #: searx/templates/simple/result_templates/paper.html:5
 msgid "Published date"
-msgstr ""
+msgstr "Julkaisupäivä"
 
 #: searx/templates/simple/result_templates/paper.html:9
 msgid "Journal"
-msgstr ""
+msgstr "Journaali"
 
 #: searx/templates/simple/result_templates/paper.html:22
 msgid "Editor"
@@ -1132,7 +1143,7 @@ msgstr ""
 
 #: searx/templates/simple/result_templates/paper.html:23
 msgid "Publisher"
-msgstr ""
+msgstr "Julkaisija"
 
 #: searx/templates/simple/result_templates/paper.html:24
 msgid "Type"
@@ -1140,7 +1151,7 @@ msgstr ""
 
 #: searx/templates/simple/result_templates/paper.html:25
 msgid "Tags"
-msgstr ""
+msgstr "Tägit"
 
 #: searx/templates/simple/result_templates/paper.html:26
 msgid "DOI"
@@ -1148,19 +1159,19 @@ msgstr ""
 
 #: searx/templates/simple/result_templates/paper.html:27
 msgid "ISSN"
-msgstr ""
+msgstr "ISSN"
 
 #: searx/templates/simple/result_templates/paper.html:28
 msgid "ISBN"
-msgstr ""
+msgstr "ISBN"
 
 #: searx/templates/simple/result_templates/paper.html:33
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: searx/templates/simple/result_templates/paper.html:34
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: searx/templates/simple/result_templates/torrent.html:6
 msgid "magnet link"
@@ -1484,4 +1495,3 @@ msgstr "piilota video"
 #~ " <a "
 #~ "href=\"http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods\""
 #~ " rel=\"external\">Lisätietoja eri välitystavoista.</a>"
-
