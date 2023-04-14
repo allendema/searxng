@@ -18,13 +18,11 @@ from urllib.parse import urljoin, urlparse
 
 from lxml import html
 from lxml.etree import ElementBase, XPath, XPathError, XPathSyntaxError, _ElementStringResult, _ElementUnicodeResult
-from babel.core import get_global
-
 
 from searx import settings
 from searx.data import USER_AGENTS, data_dir
 from searx.version import VERSION_TAG
-from searx.languages import language_codes
+from searx.sxng_locales import sxng_locales
 from searx.exceptions import SearxXPathSyntaxException, SearxEngineXPathException
 from searx import logger
 
@@ -52,6 +50,9 @@ _LANG_TO_LC_CACHE: Dict[str, Dict[str, str]] = {}
 
 _FASTTEXT_MODEL: Optional["fasttext.FastText._FastText"] = None
 """fasttext model to predict laguage of a search term"""
+
+SEARCH_LANGUAGE_CODES = frozenset([searxng_locale[0].split('-')[0] for searxng_locale in sxng_locales])
+"""Languages supported by most searxng engines (:py:obj:`searx.sxng_locales.sxng_locales`)."""
 
 
 class _NotSetClass:  # pylint: disable=too-few-public-methods
@@ -352,100 +353,14 @@ def is_valid_lang(lang) -> Optional[Tuple[bool, str, str]]:
     is_abbr = len(lang) == 2
     lang = lang.lower()
     if is_abbr:
-        for l in language_codes:
+        for l in sxng_locales:
             if l[0][:2] == lang:
                 return (True, l[0][:2], l[3].lower())
         return None
-    for l in language_codes:
+    for l in sxng_locales:
         if l[1].lower() == lang or l[3].lower() == lang:
             return (True, l[0][:2], l[3].lower())
     return None
-
-
-def _get_lang_to_lc_dict(lang_list: List[str]) -> Dict[str, str]:
-    key = str(lang_list)
-    value = _LANG_TO_LC_CACHE.get(key, None)
-    if value is None:
-        value = {}
-        for lang in lang_list:
-            value.setdefault(lang.split('-')[0], lang)
-        _LANG_TO_LC_CACHE[key] = value
-    return value
-
-
-# babel's get_global contains all sorts of miscellaneous locale and territory related data
-# see get_global in: https://github.com/python-babel/babel/blob/master/babel/core.py
-def _get_from_babel(lang_code: str, key):
-    match = get_global(key).get(lang_code.replace('-', '_'))
-    # for some keys, such as territory_aliases, match may be a list
-    if isinstance(match, str):
-        return match.replace('_', '-')
-    return match
-
-
-def _match_language(lang_code: str, lang_list=[], custom_aliases={}) -> Optional[str]:  # pylint: disable=W0102
-    """auxiliary function to match lang_code in lang_list"""
-    # replace language code with a custom alias if necessary
-    if lang_code in custom_aliases:
-        lang_code = custom_aliases[lang_code]
-
-    if lang_code in lang_list:
-        return lang_code
-
-    # try to get the most likely country for this language
-    subtags = _get_from_babel(lang_code, 'likely_subtags')
-    if subtags:
-        if subtags in lang_list:
-            return subtags
-        subtag_parts = subtags.split('-')
-        new_code = subtag_parts[0] + '-' + subtag_parts[-1]
-        if new_code in custom_aliases:
-            new_code = custom_aliases[new_code]
-        if new_code in lang_list:
-            return new_code
-
-    # try to get the any supported country for this language
-    return _get_lang_to_lc_dict(lang_list).get(lang_code)
-
-
-def match_language(  # pylint: disable=W0102
-    locale_code, lang_list=[], custom_aliases={}, fallback: Optional[str] = 'en-US'
-) -> Optional[str]:
-    """get the language code from lang_list that best matches locale_code"""
-    # try to get language from given locale_code
-    language = _match_language(locale_code, lang_list, custom_aliases)
-    if language:
-        return language
-
-    locale_parts = locale_code.split('-')
-    lang_code = locale_parts[0]
-
-    # if locale_code has script, try matching without it
-    if len(locale_parts) > 2:
-        language = _match_language(lang_code + '-' + locale_parts[-1], lang_list, custom_aliases)
-        if language:
-            return language
-
-    # try to get language using an equivalent country code
-    if len(locale_parts) > 1:
-        country_alias = _get_from_babel(locale_parts[-1], 'territory_aliases')
-        if country_alias:
-            language = _match_language(lang_code + '-' + country_alias[0], lang_list, custom_aliases)
-            if language:
-                return language
-
-    # try to get language using an equivalent language code
-    alias = _get_from_babel(lang_code, 'language_aliases')
-    if alias:
-        language = _match_language(alias, lang_list, custom_aliases)
-        if language:
-            return language
-
-    if lang_code != locale_code:
-        # try to get language from given language without giving the country
-        language = _match_language(lang_code, lang_list, custom_aliases)
-
-    return language or fallback
 
 
 def load_module(filename: str, module_dir: str) -> types.ModuleType:
@@ -637,11 +552,72 @@ def _get_fasttext_model() -> "fasttext.FastText._FastText":
     return _FASTTEXT_MODEL
 
 
-def detect_language(text: str, threshold: float = 0.3, min_probability: float = 0.5) -> Optional[str]:
-    """https://fasttext.cc/docs/en/language-identification.html"""
+def detect_language(text: str, threshold: float = 0.3, only_search_languages: bool = False) -> Optional[str]:
+    """Detect the language of the ``text`` parameter.
+
+    :param str text: The string whose language is to be detected.
+
+    :param float threshold: Threshold filters the returned labels by a threshold
+        on probability.  A choice of 0.3 will return labels with at least 0.3
+        probability.
+
+    :param bool only_search_languages: If ``True``, returns only supported
+        SearXNG search languages.  see :py:obj:`searx.languages`
+
+    :rtype: str, None
+    :returns:
+        The detected language code or ``None``. See below.
+
+    :raises ValueError: If ``text`` is not a string.
+
+    The language detection is done by using `a fork`_ of the fastText_ library
+    (`python fasttext`_). fastText_ distributes the `language identification
+    model`_, for reference:
+
+    - `FastText.zip: Compressing text classification models`_
+    - `Bag of Tricks for Efficient Text Classification`_
+
+    The `language identification model`_ support the language codes
+    (ISO-639-3)::
+
+        af als am an ar arz as ast av az azb ba bar bcl be bg bh bn bo bpy br bs
+        bxr ca cbk ce ceb ckb co cs cv cy da de diq dsb dty dv el eml en eo es
+        et eu fa fi fr frr fy ga gd gl gn gom gu gv he hi hif hr hsb ht hu hy ia
+        id ie ilo io is it ja jbo jv ka kk km kn ko krc ku kv kw ky la lb lez li
+        lmo lo lrc lt lv mai mg mhr min mk ml mn mr mrj ms mt mwl my myv mzn nah
+        nap nds ne new nl nn no oc or os pa pam pfl pl pms pnb ps pt qu rm ro ru
+        rue sa sah sc scn sco sd sh si sk sl so sq sr su sv sw ta te tg th tk tl
+        tr tt tyv ug uk ur uz vec vep vi vls vo wa war wuu xal xmf yi yo yue zh
+
+    By using ``only_search_languages=True`` the `language identification model`_
+    is harmonized with the SearXNG's language (locale) model.  General
+    conditions of SearXNG's locale model are:
+
+    a. SearXNG's locale of a query is passed to the
+       :py:obj:`searx.locales.get_engine_locale` to get a language and/or region
+       code that is used by an engine.
+
+    b. Most of SearXNG's engines do not support all the languages from `language
+       identification model`_ and there is also a discrepancy in the ISO-639-3
+       (fastext) and ISO-639-2 (SearXNG)handling.  Further more, in SearXNG the
+       locales like ``zh-TH`` (``zh-CN``) are mapped to ``zh_Hant``
+       (``zh_Hans``) while the `language identification model`_ reduce both to
+       ``zh``.
+
+    .. _a fork: https://github.com/searxng/fasttext-predict
+    .. _fastText: https://fasttext.cc/
+    .. _python fasttext: https://pypi.org/project/fasttext/
+    .. _language identification model: https://fasttext.cc/docs/en/language-identification.html
+    .. _Bag of Tricks for Efficient Text Classification: https://arxiv.org/abs/1607.01759
+    .. _`FastText.zip: Compressing text classification models`: https://arxiv.org/abs/1612.03651
+
+    """
     if not isinstance(text, str):
         raise ValueError('text must a str')
     r = _get_fasttext_model().predict(text.replace('\n', ' '), k=1, threshold=threshold)
-    if isinstance(r, tuple) and len(r) == 2 and len(r[0]) > 0 and len(r[1]) > 0 and r[1][0] > min_probability:
-        return r[0][0].split('__label__')[1]
+    if isinstance(r, tuple) and len(r) == 2 and len(r[0]) > 0 and len(r[1]) > 0:
+        language = r[0][0].split('__label__')[1]
+        if only_search_languages and language not in SEARCH_LANGUAGE_CODES:
+            return None
+        return language
     return None

@@ -203,12 +203,12 @@ Global Settings
 .. code:: yaml
 
    server:
-       base_url: false                # set custom base_url (or false)
+       base_url: http://example.org/location  # change this!
        port: 8888
-       bind_address: "127.0.0.1"      # address to listen on
-       secret_key: "ultrasecretkey"   # change this!
+       bind_address: "127.0.0.1"
+       secret_key: "ultrasecretkey"           # change this!
        limiter: false
-       image_proxy: false             # proxying image results through SearXNG
+       image_proxy: false
        default_http_headers:
          X-Content-Type-Options : nosniff
          X-XSS-Protection : 1; mode=block
@@ -216,20 +216,18 @@ Global Settings
          X-Robots-Tag : noindex, nofollow
          Referrer-Policy : no-referrer
 
-.. sidebar::  buildenv
 
-   Changing a value tagged by :ref:`buildenv <make buildenv>`, needs to
-   rebuild instance's environment :ref:`utils/brand.env <make buildenv>`.
-
-``base_url`` : :ref:`buildenv SEARXNG_URL <make buildenv>`
+``base_url`` : ``$SEARXNG_URL`` :ref:`buildenv <make buildenv>`
   The base URL where SearXNG is deployed.  Used to create correct inbound links.
   If you change the value, don't forget to rebuild instance's environment
   (:ref:`utils/brand.env <make buildenv>`)
 
-``port`` & ``bind_address``: :ref:`buildenv SEARXNG_PORT & SEARXNG_BIND_ADDRESS <make buildenv>`
+``port`` & ``bind_address``: ``$SEARXNG_PORT`` & ``$SEARXNG_BIND_ADDRESS`` :ref:`buildenv <make buildenv>`
   Port number and *bind address* of the SearXNG web application if you run it
-  directly using ``python searx/webapp.py``.  Doesn't apply to SearXNG running on
-  Apache or Nginx.
+  directly using ``python searx/webapp.py``.  Doesn't apply to a SearXNG
+  services running behind a proxy and using socket communications.  If you
+  change the value, don't forget to rebuild instance's environment
+  (:ref:`utils/brand.env <make buildenv>`)
 
 ``secret_key`` : ``$SEARXNG_SECRET``
   Used for cryptography purpose.
@@ -312,7 +310,6 @@ Global Settings
 
 ``results_on_new_tab``:
   Open result links in a new tab by default.
-
 
 .. _settings redis:
 
@@ -453,11 +450,14 @@ Communication with search engines.
   see `httpx verification defaults`_.
 
   In addition to ``verify``, SearXNG supports the ``$SSL_CERT_FILE`` (for a file) and
-  ``$SSL_CERT_DIR`` (for a directory) OpenSSL variables.  
+  ``$SSL_CERT_DIR`` (for a directory) OpenSSL variables.
   see `httpx ssl configuration`_.
 
 ``max_redirects`` :
   30 by default. Maximum redirect before it is an error.
+
+
+.. _settings categories_as_tabs:
 
 ``categories_as_tabs:``
 -----------------------
@@ -478,6 +478,15 @@ Categories not listed here can still be searched with the :ref:`search-syntax`.
     science:
     files:
     social media:
+
+Engines are added to ``categories:`` (compare :ref:`engine categories`), the
+categories listed in ``categories_as_tabs`` are shown as tabs in the UI.  If
+there are no active engines in a category, the tab is not displayed (e.g. if a
+user disables all engines in a category).
+
+On the preferences page (``/preferences``) -- under *engines* -- there is an
+additional tab, called *other*.  In this tab are all engines listed that are not
+in one of the UI tabs (not included in ``categories_as_tabs``).
 
 .. _settings engine:
 
@@ -505,7 +514,7 @@ engine is shown.  Most of the options have a default value or even are optional.
      disabled: false
      language: en_US
      tokens: [ 'my-secret-token' ]
-     weigth: 1
+     weight: 1
      display_error_messages: true
      about:
         website: https://example.com
@@ -554,10 +563,21 @@ engine is shown.  Most of the options have a default value or even are optional.
   to build and send a ``Accept-Language`` header in the request to the origin
   search engine.
 
+.. _engine categories:
+
 ``categories`` : optional
-  Define in which categories this engine will be active.  Most of the time, it is
-  defined in the code of the engine, but in a few cases it is useful, like when
-  describing multiple search engine using the same code.
+  Specifies to which categories the engine should be added.  Engines can be
+  assigned to multiple categories.
+
+  Categories can be shown as tabs (:ref:`settings categories_as_tabs`) in the
+  UI.  A search in a tab (in the UI) will query all engines that are active in
+  this tab.  In the preferences page (``/preferences``) -- under *engines* --
+  users can select what engine should be active when querying in this tab.
+
+  Alternatively, :ref:`\!bang <search-syntax>` can be used to search all engines
+  in a category, regardless of whether they are active or not, or whether they
+  are in a tab of the UI or not.  For example, ``!dictionaries`` can be used to
+  query all search engines in that category (group).
 
 ``timeout`` : optional
   Timeout of the search with the current search engine.  **Be careful, it will
@@ -571,16 +591,19 @@ engine is shown.  Most of the options have a default value or even are optional.
   To disable by default the engine, but not deleting it.  It will allow the user
   to manually activate it in the settings.
 
+``inactive``: optional
+  Remove the engine from the settings (*disabled & removed*).
+
 ``language`` : optional
   If you want to use another language for a specific engine, you can define it
-  by using the full ISO code of language and country, like ``fr_FR``, ``en_US``,
-  ``de_DE``.
+  by using the ISO code of language (and region), like ``fr``, ``en-US``,
+  ``de-DE``.
 
 ``tokens`` : optional
   A list of secret tokens to make this engine *private*, more details see
   :ref:`private engines`.
 
-``weigth`` : default ``1``
+``weight`` : default ``1``
   Weighting of the results of this engine.
 
 ``display_error_messages`` : default ``true``
@@ -657,7 +680,7 @@ and can relied on the default configuration :origin:`searx/settings.yml` using:
 ``engines:``
   With ``use_default_settings: true``, each settings can be override in a
   similar way, the ``engines`` section is merged according to the engine
-  ``name``.  In this example, SearXNG will load all the default engines, will 
+  ``name``.  In this example, SearXNG will load all the default engines, will
   enable the ``bing`` engine and define a :ref:`token <private engines>` for
   the arch linux engine:
 
