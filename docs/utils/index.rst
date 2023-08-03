@@ -10,7 +10,6 @@ and developers.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents
 
    searxng.sh
    lxc.sh
@@ -19,6 +18,8 @@ Common command environments
 ===========================
 
 The scripts in our tooling box often dispose of common environments:
+
+.. _FORCE_TIMEOUT:
 
 ``FORCE_TIMEOUT`` : environment
   Sets timeout for interactive prompts. If you want to run a script in batch

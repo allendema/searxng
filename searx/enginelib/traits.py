@@ -13,7 +13,8 @@ used.
 from __future__ import annotations
 import json
 import dataclasses
-from typing import Dict, Union, Callable, Optional, TYPE_CHECKING
+import types
+from typing import Dict, Iterable, Union, Callable, Optional, TYPE_CHECKING
 from typing_extensions import Literal, Self
 
 from searx import locales
@@ -81,9 +82,8 @@ class EngineTraits:
     """Data type, default is 'traits_v1'.
     """
 
-    custom: Dict[str, Dict] = dataclasses.field(default_factory=dict)
-    """A place to store engine's custom traits, not related to the SearXNG core
-
+    custom: Dict[str, Union[Dict[str, Dict], Iterable[str]]] = dataclasses.field(default_factory=dict)
+    """A place to store engine's custom traits, not related to the SearXNG core.
     """
 
     def get_language(self, searxng_locale: str, default=None):
@@ -228,7 +228,7 @@ class EngineTraitsMap(Dict[str, EngineTraits]):
 
         return obj
 
-    def set_traits(self, engine: Engine):
+    def set_traits(self, engine: Engine | types.ModuleType):
         """Set traits in a :py:obj:`Engine` namespace.
 
         :param engine: engine instance build by :py:func:`searx.engines.load_engine`

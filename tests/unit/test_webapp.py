@@ -69,7 +69,7 @@ class ViewsTestCase(SearxTestCase):
                 infoboxes=[],
                 unresponsive_engines=set(),
                 results=test_results,
-                results_number=lambda: 3,
+                number_of_results=3,
                 results_length=lambda: len(test_results),
                 get_timings=lambda: timings,
                 redirect_url=None,
@@ -201,7 +201,7 @@ class ViewsTestCase(SearxTestCase):
         self.assertIn(
             b'<input type="checkbox" id="checkbox_general" name="category_general" checked="checked"/>', result.data
         )
-        self.assertIn(b'<legend id="pref_locale">Interface language</legend>', result.data)
+        self.assertIn(b'<legend id="pref_ui_locale">Interface language</legend>', result.data)
 
     def test_browser_locale(self):
         result = self.app.get('/preferences', headers={'Accept-Language': 'zh-tw;q=0.8'})
