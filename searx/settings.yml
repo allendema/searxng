@@ -1316,6 +1316,13 @@ engines:
     api_site: 'superuser'
     categories: [it, q&a]
 
+  - name: discusspython
+    engine: discourse
+    shortcut: dpy
+    base_url: 'https://discuss.python.org'
+    categories: [it, q&a]
+    disabled: true
+
   - name: searchcode code
     engine: searchcode_code
     shortcut: scc
