@@ -4,10 +4,14 @@
 Engine Implementations
 ======================
 
-Framework Components
-====================
+.. contents::
+   :depth: 2
+   :local:
+   :backlinks: entry
+
 
 .. toctree::
+   :caption: Framework Components
    :maxdepth: 2
 
    enginelib
@@ -40,6 +44,12 @@ Online Engines
 
    demo/demo_online
    xpath
+   mediawiki
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
    online/*
 
 .. _offline engines:
