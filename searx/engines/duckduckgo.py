@@ -53,6 +53,7 @@ categories = ['general', 'web']
 paging = True
 time_range_support = True
 safesearch = True  # user can't select but the results are filtered
+instant_answers = True
 
 url = 'https://lite.duckduckgo.com/lite/'
 # url_ping = 'https://duckduckgo.com/t/sl_l'
@@ -302,6 +303,19 @@ def response(resp):
 
     len_tr_rows = len(tr_rows)
     offset = 0
+
+    zero_click_info_xpath = '//html/body/form/div/table[2]/tr[2]/td/text()'
+    zero_click = extract_text(eval_xpath(doc, zero_click_info_xpath))
+
+    if instant_answers and zero_click.strip():
+        current_query = resp.search_params["data"].get("q")
+
+        results.append(
+            {
+                'answer': zero_click.strip(),
+                'url': "https://duckduckgo.com/?" + urlencode({"q": current_query}),
+            }
+        )
 
     while len_tr_rows >= offset + 4:
 

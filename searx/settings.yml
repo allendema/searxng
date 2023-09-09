@@ -586,6 +586,7 @@ engines:
   - name: duckduckgo
     engine: duckduckgo
     shortcut: ddg
+    instant_answers: False
 
   - name: duckduckgo images
     engine: duckduckgo_images
