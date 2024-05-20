@@ -276,9 +276,9 @@ class ResultContainer:
         """Return True if the result is valid"""
         result['parsed_url'] = urlparse(result['url'])
 
-        # if the result has no scheme, use http as default
+        # if the result has no scheme, use https as default
         if not result['parsed_url'].scheme:
-            result['parsed_url'] = result['parsed_url']._replace(scheme="http")
+            result['parsed_url'] = result['parsed_url']._replace(scheme="https")
             result['url'] = result['parsed_url'].geturl()
 
         # avoid duplicate content between the content and title fields
