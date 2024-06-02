@@ -2006,6 +2006,15 @@ engines:
     paging: false
     disabled: true
 
+  - name: mojeek focus python
+    shortcut: mjkpy
+    engine: mojeek
+    categories: [web]
+    search_type: focus
+    focus_name: py
+    focus_content: "i=realpython.com,www.python-lernen.de,letscode-python.de,www.crummy.com,www.tutorialspoint.com,python-course.eu,docs.python.org&e=quora.com,wikipedia.org"
+    disabled: true
+
   - name: mojeek news
     shortcut: mjknews
     engine: mojeek

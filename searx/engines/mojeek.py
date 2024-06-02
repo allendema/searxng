@@ -2,7 +2,7 @@
 """Mojeek (general, images, news)"""
 
 from datetime import datetime
-from urllib.parse import urlencode
+from urllib.parse import urlencode, unquote
 from lxml import html
 
 from dateutil.relativedelta import relativedelta
@@ -16,15 +16,19 @@ about = {
     'require_api_key': False,
     'results': 'HTML',
 }
-paging = True  # paging is only supported for general search
+
+base_url = "https://www.mojeek.com"
+paging = True  # paging is only supported for general and focus search
 safesearch = True
 time_range_support = True  # time range search is supported for general and news
 max_page = 10
+focus_name = ""
+focus_content = ""
 
 base_url = "https://www.mojeek.com"
 
 categories = ["general", "web"]
-search_type = ""  # leave blank for general, other possible values: images, news
+search_type = ""  # leave blank for general, other possible values: images, news, focus
 
 results_xpath = '//ul[@class="results-standard"]/li/a[@class="ob"]'
 url_xpath = './@href'
@@ -44,7 +48,7 @@ news_content_xpath = './/p[@class="s"]'
 
 
 def init(_):
-    if search_type not in ('', 'images', 'news'):
+    if search_type not in ('', 'images', 'news', 'focus'):
         raise ValueError(f"Invalid search type {search_type}")
 
 
@@ -55,12 +59,20 @@ def request(query, params):
         'fmt': search_type,
     }
 
-    if search_type == '':
+    if search_type in ('', 'focus'):
         args['s'] = 10 * (params['pageno'] - 1)
 
     if params['time_range'] and search_type != 'images':
         args["since"] = (datetime.now() - relativedelta(**{f"{params['time_range']}s": 1})).strftime("%Y%m%d")
-        logger.debug(args["since"])
+
+    if search_type == 'focus':
+        params['cookies']['s_foc'] = '1'
+        params['cookies']['si_foc'] = '5'
+        params['cookies']['r_foc'] = '1'
+        params['cookies']['dlen'] = '200'  # description length
+        params['cookies'][f'foc_{unquote(focus_name)}'] = unquote(focus_content)
+
+        args['foc'] = unquote(focus_name)
 
     params['url'] = f"{base_url}/search?{urlencode(args)}"
     params['headers'] = {'User-Agent': gen_useragent()}
@@ -121,7 +133,7 @@ def _news_results(dom):
 def response(resp):
     dom = html.fromstring(resp.text)
 
-    if search_type == '':
+    if search_type in ('', 'focus'):
         return _general_results(dom)
 
     if search_type == 'images':
