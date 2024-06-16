@@ -19,7 +19,7 @@ about = {
 
 engine_type = 'online_dictionary'
 categories = ['general', 'translate']
-url = 'https://dictzone.com/{from_lang}-{to_lang}-dictionary/{query}'
+url = 'https://dictzone.com/{from_lang}-{to_lang}-dictionary/{word}'
 weight = 100
 
 results_xpath = './/table[@id="r"]/tr'
@@ -27,8 +27,11 @@ https_support = True
 
 
 def request(query, params):  # pylint: disable=unused-argument
-    params['url'] = url.format(from_lang=params['from_lang'][2], to_lang=params['to_lang'][2], query=params['query'])
+    # get lang name from (True, 'en', 'english')
+    from_lang_int_name = params['from_lang'][-1]
+    to_lang_int_name = params['to_lang'][-1]
 
+    params['url'] = url.format(from_lang=from_lang_int_name, to_lang=to_lang_int_name, word=params['query'])
     return params
 
 
