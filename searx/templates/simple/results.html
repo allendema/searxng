@@ -74,6 +74,7 @@
     <div id="corrections" role="complementary" aria-labelledby="corrections-title">
       <h4 id="corrections-title">{{ _('Try searching for:') }}</h4>
       {% for correction in corrections %}
+        {% if correction.title != '' and correction.url != '' %}
       <div class="left">
 	      <form method="{{ method or 'POST' }}" action="{{ url_for('search') }}" role="navigation">
           {% for category in selected_categories %}
@@ -88,6 +89,7 @@
           <input type="submit" role="link" value="{{ correction.title }}">
 	      </form>
       </div>
+        {% endif %}
       {% endfor %}
     </div>
     {% endif %}
