@@ -1061,7 +1061,6 @@ def image_proxy():
             'Accept': 'image/webp,*/*',
             'Accept-Encoding': 'gzip, deflate',
             'Sec-GPC': '1',
-            'DNT': '1',
         }
         set_context_network_name('image_proxy')
         resp, stream = http_stream(method='GET', url=url, headers=request_headers, allow_redirects=True)
