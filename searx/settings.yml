@@ -73,7 +73,6 @@ search:
   # formats: [html, csv, json, rss]
   formats:
     - html
-    - json
 
 server:
   # Is overwritten by ${SEARXNG_PORT} and ${SEARXNG_BIND_ADDRESS}
@@ -733,9 +732,9 @@ engines:
     timeout: 8.0
     disabled: false
     weight: 0.8
-    #extras:
-    #  preferences: 'Size=md&Wetter=2&Style=0&Checked=1&Widgets=11-0-0-0,0-0-0-0'
-    #  session_id: '25char_session_id'
+    # extras:
+      # preferences: 'Size=md&Wetter=2&Style=0&Checked=1&Widgets=11-0-0-0,0-0-0-0'
+      # session_id: '25char_session_id'
 
   - name: etymonline
     engine: xpath
