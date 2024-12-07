@@ -921,6 +921,14 @@ engines:
     play_categ: movies
     disabled: true
 
+  - name: ghostery
+    engine: ghostery
+    categories: general
+    shortcut: gho
+    disabled: false
+    extras:
+      test: test
+
   - name: material icons
     engine: material_icons
     categories: images
