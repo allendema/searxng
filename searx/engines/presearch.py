@@ -63,11 +63,13 @@ Implementations
 ===============
 
 """
-
 from urllib.parse import urlencode
+
 from searx import locales
 from searx.network import get
 from searx.utils import gen_useragent, html_to_text
+
+from lxml import html
 
 about = {
     "website": "https://presearch.io",
@@ -161,7 +163,7 @@ def parse_search_query(json_results):
     for item in json_results.get('specialSections', {}).get('topStoriesCompact', {}).get('data', []):
         result = {
             'url': item['link'],
-            'title': item['title'],
+            'title': html.fromstring(item['title']).text_content().strip(),
             'thumbnail': item['image'],
             'content': '',
             'metadata': item.get('source'),
@@ -171,7 +173,7 @@ def parse_search_query(json_results):
     for item in json_results.get('standardResults', []):
         result = {
             'url': item['link'],
-            'title': item['title'],
+            'title': html.fromstring(item['title']).text_content().strip(),
             'content': html_to_text(item['description']),
         }
         results.append(result)
@@ -240,7 +242,7 @@ def response(resp):
             metadata = [x for x in [item.get('description'), item.get('duration')] if x]
             results.append(
                 {
-                    'title': item['title'],
+                    'title': html.fromstring(item['title']).text_content().strip(),
                     'url': item.get('link'),
                     'content': '',
                     'metadata': ' / '.join(metadata),
@@ -253,7 +255,7 @@ def response(resp):
             metadata = [x for x in [item.get('source'), item.get('time')] if x]
             results.append(
                 {
-                    'title': item['title'],
+                    'title': html.fromstring(item['title']).text_content().strip(),
                     'url': item.get('link'),
                     'content': item.get('description', ''),
                     'metadata': ' / '.join(metadata),
