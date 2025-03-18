@@ -37,7 +37,6 @@ def request(query, params):
         pageno=params['pageno'],
         query=urlencode({'s': query}),
     )
-    logger.debug("query_url --> %s", params['url'])
     return params
 
 

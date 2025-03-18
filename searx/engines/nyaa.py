@@ -49,7 +49,6 @@ def request(query, params):
         }
     )
     params['url'] = base_url + '?' + args  #
-    logger.debug("query_url --> %s", params['url'])
     return params
 
 

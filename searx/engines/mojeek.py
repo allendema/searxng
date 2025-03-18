@@ -80,7 +80,6 @@ def request(query, params):
     if params['time_range'] and search_type != 'images':
         kwargs = {_delta_kwargs[params['time_range']]: 1}
         args["since"] = (datetime.now() - relativedelta(**kwargs)).strftime("%Y%m%d")  # type: ignore
-        logger.debug(args["since"])
 
     params['url'] = f"{base_url}/search?{urlencode(args)}"
 

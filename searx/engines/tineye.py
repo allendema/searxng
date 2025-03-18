@@ -70,7 +70,6 @@ def request(query, params):
     elif params['search_urls']['http']:
         query = params['search_urls']['http']
 
-    logger.debug("query URL: %s", query)
     query = urlencode({'url': query})
 
     # see https://github.com/TinEye/pytineye/blob/main/pytineye/api.py

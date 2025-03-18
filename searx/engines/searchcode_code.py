@@ -37,7 +37,6 @@ def request(query, params):
         }
     )
     params['url'] = search_api + args
-    logger.debug("query_url --> %s", params['url'])
     return params
 
 

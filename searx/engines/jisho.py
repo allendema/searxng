@@ -27,7 +27,6 @@ SEARCH_URL = URL + '/api/v1/search/words?{query}'
 def request(query, params):
     query = urlencode({'keyword': query})
     params['url'] = SEARCH_URL.format(query=query)
-    logger.debug(f"query_url --> {params['url']}")
     return params
 
 

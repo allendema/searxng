@@ -83,7 +83,6 @@ def init(engine_settings):
 def search(query, params) -> EngineResults:
     query_params = {'query': query}
     query_to_run = query_str + ' LIMIT {0} OFFSET {1}'.format(limit, (params['pageno'] - 1) * limit)
-    logger.debug("SQL Query: %s", query_to_run)
     res = EngineResults()
 
     with _connection.cursor() as cur:

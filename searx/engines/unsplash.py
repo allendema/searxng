@@ -32,7 +32,6 @@ def clean_url(url):
 
 def request(query, params):
     params['url'] = search_url + urlencode({'query': query, 'page': params['pageno'], 'per_page': page_size})
-    logger.debug("query_url --> %s", params['url'])
     return params
 
 

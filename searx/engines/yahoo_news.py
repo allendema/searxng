@@ -60,7 +60,6 @@ def request(query, params):
     offset = (params['pageno'] - 1) * 10 + 1
 
     params['url'] = search_url.format(offset=offset, query=urlencode({'p': query}))
-    logger.debug("query_url --> %s", params['url'])
     return params
 
 

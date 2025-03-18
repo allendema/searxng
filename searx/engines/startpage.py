@@ -210,8 +210,6 @@ def get_sc_code(searxng_locale, params):
         headers['Accept-Language'] = ac_lang
 
     get_sc_url = base_url + '/?sc=%s' % (sc_code)
-    logger.debug("query new sc time-stamp ... %s", get_sc_url)
-    logger.debug("headers: %s", headers)
     resp = get(get_sc_url, headers=headers)
 
     # ?? x = network.get('https://www.startpage.com/sp/cdn/images/filter-chevron.svg', headers=headers)

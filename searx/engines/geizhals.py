@@ -51,7 +51,6 @@ def request(query, params):
     if sort_order_path:
         sort = sort_order_map.get(sort_order_path.group(1))
         query = SORT_RE.sub("", query)
-        logger.debug(query)
 
     args = {
         'fs': query,
