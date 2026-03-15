@@ -35,7 +35,7 @@ class HTTPParams(t.TypedDict):
     headers: dict[str, str]
     """HTTP header information."""
 
-    data: dict[str, str]
+    data: dict[str, str | int | dict[str, str | int]]
     """Sending `form encoded data`_.
 
     .. _form encoded data:
@@ -56,7 +56,7 @@ class HTTPParams(t.TypedDict):
        https://www.python-httpx.org/quickstart/#sending-json-encoded-data
     """
 
-    url: str
+    url: str | None
     """Requested url."""
 
     cookies: dict[str, str]
@@ -141,22 +141,24 @@ class OnlineProcessor(EngineProcessor):
         params: OnlineParams = {**default_request_params(), **base_params}
 
         headers = params["headers"]
+        headers["Accept-Encoding"] = "gzip, deflate"
+        headers["Cache-Control"] = "no-cache"
+        headers["DNT"] = "1"
+        headers["Connection"] = "keep-alive"
 
         # add an user agent
         headers["User-Agent"] = gen_useragent()
 
         # add Accept-Language header
-        if self.engine.send_accept_language_header and search_query.locale:
-            ac_lang = search_query.locale.language
-            if search_query.locale.territory:
-                ac_lang = "%s-%s,%s;q=0.9,*;q=0.5" % (
-                    search_query.locale.language,
-                    search_query.locale.territory,
-                    search_query.locale.language,
-                )
-            headers["Accept-Language"] = ac_lang
+        # https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Accept-Language
 
+        headers["Accept-Language"] = "en,en-US;q=0.7,en;q=0.3"
+        if self.engine.send_accept_language_header and search_query.locale:
+            _l = search_query.locale.language
+            _t = search_query.locale.territory or _l
+            headers["Accept-Language"] = f"{_l},{_l}-{_t};q=0.7,en;q=0.3"
         self.logger.debug("HTTP Accept-Language: %s", headers.get("Accept-Language", ""))
+
         return params
 
     def _send_http_request(self, params: OnlineParams):
@@ -200,7 +202,7 @@ class OnlineProcessor(EngineProcessor):
                 request_args["content"] = params["content"]
 
         # send the request
-        response = req(params["url"], **request_args)
+        response = req(params["url"], **request_args)  # pyright: ignore[reportArgumentType]
 
         # check soft limit of the redirect count
         if len(response.history) > soft_max_redirects:

@@ -43,7 +43,7 @@ ENGINE_DEFAULT_ARGS: dict[str, int | str | list[t.Any] | dict[str, t.Any] | bool
     "inactive": False,
     "about": {},
     "using_tor_proxy": False,
-    "send_accept_language_header": False,
+    "send_accept_language_header": True,
     "tokens": [],
     "max_page": 0,
 }
@@ -270,7 +270,14 @@ def load_engines(engine_list: list[dict[str, t.Any]]):
     categories.clear()
     categories['general'] = []
     for engine_data in engine_list:
+        if engine_data.get("inactive") is True:
+            continue
         engine = load_engine(engine_data)
         if engine:
             register_engine(engine)
+        else:
+            # if an engine can't be loaded (if for example the engine is missing
+            # tor or some other requirements) its set to inactive!
+            logger.error("loading engine %s failed: set engine to inactive!", engine_data.get("name", "???"))
+            engine_data["inactive"] = True
     return engines

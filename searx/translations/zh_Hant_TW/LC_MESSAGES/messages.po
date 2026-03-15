@@ -40,22 +40,22 @@
 # pochinki <pochinki@noreply.codeberg.org>, 2025.
 # ajiou <ajiou@noreply.codeberg.org>, 2025.
 # zymurge <zymurge@noreply.codeberg.org>, 2025.
+# Maoyue_OUO <maoyue_ouo@noreply.codeberg.org>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: searx\n"
+"Project-Id-Version:  searx\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-01 12:54+0000\n"
-"PO-Revision-Date: 2025-09-02 04:50+0000\n"
-"Last-Translator: return42 <return42@noreply.codeberg.org>\n"
-"Language-Team: Chinese (Traditional Han script) <https://"
-"translate.codeberg.org/projects/searxng/searxng/zh_Hant/>\n"
+"POT-Creation-Date: 2026-02-22 13:48+0000\n"
+"PO-Revision-Date: 2026-01-10 17:50+0000\n"
+"Last-Translator: Maoyue_OUO <maoyue_ouo@noreply.codeberg.org>\n"
 "Language: zh_Hant_TW\n"
+"Language-Team: Chinese (Traditional Han script, Taiwan) "
+"<https://translate.codeberg.org/projects/searxng/searxng/zh_Hant_TW/>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.12.2\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #. CONSTANT_NAMES['NO_SUBGROUPING']
 #: searx/searxng.msg
@@ -98,7 +98,7 @@ msgid "videos"
 msgstr "影片"
 
 #. CATEGORY_NAMES['RADIO']
-#: searx/engines/radio_browser.py:151 searx/searxng.msg
+#: searx/engines/radio_browser.py:142 searx/searxng.msg
 msgid "radio"
 msgstr "廣播電臺"
 
@@ -523,7 +523,7 @@ msgid "active users"
 msgstr "活躍使用者"
 
 #. SOCIAL_MEDIA_TERMS['COMMENTS']
-#: searx/engines/discourse.py:157 searx/engines/hackernews.py:82
+#: searx/engines/discourse.py:157 searx/engines/hackernews.py:83
 #: searx/engines/lemmy.py:130 searx/searxng.msg
 msgid "comments"
 msgstr "留言"
@@ -539,7 +539,7 @@ msgid "community"
 msgstr "社群"
 
 #. SOCIAL_MEDIA_TERMS['POINTS']
-#: searx/engines/hackernews.py:82 searx/searxng.msg
+#: searx/engines/hackernews.py:83 searx/searxng.msg
 msgid "points"
 msgstr "積分"
 
@@ -549,7 +549,7 @@ msgid "title"
 msgstr "標題"
 
 #. SOCIAL_MEDIA_TERMS['AUTHOR']
-#: searx/engines/hackernews.py:85 searx/searxng.msg
+#: searx/engines/hackernews.py:86 searx/searxng.msg
 msgid "author"
 msgstr "作者"
 
@@ -568,28 +568,28 @@ msgstr "已關閉"
 msgid "answered"
 msgstr "已解答"
 
-#: searx/webapp.py:329
+#: searx/webapp.py:327
 msgid "No item found"
 msgstr "找不到項目"
 
-#: searx/engines/qwant.py:291
-#: searx/templates/simple/result_templates/images.html:23 searx/webapp.py:331
+#: searx/engines/qwant.py:296
+#: searx/templates/simple/result_templates/images.html:23 searx/webapp.py:329
 msgid "Source"
 msgstr "來源"
 
-#: searx/webapp.py:333
+#: searx/webapp.py:331
 msgid "Error loading the next page"
 msgstr "載入下個頁面時發生錯誤"
 
-#: searx/webapp.py:476 searx/webapp.py:874
+#: searx/webapp.py:480 searx/webapp.py:881
 msgid "Invalid settings, please edit your preferences"
 msgstr "無效的設定，請編輯您的偏好設定"
 
-#: searx/webapp.py:492
+#: searx/webapp.py:496
 msgid "Invalid settings"
 msgstr "無效的設定"
 
-#: searx/webapp.py:569 searx/webapp.py:659
+#: searx/webapp.py:573 searx/webapp.py:663
 msgid "search error"
 msgstr "搜尋錯誤"
 
@@ -649,17 +649,17 @@ msgstr "伺服器 API 錯誤"
 msgid "Suspended"
 msgstr "暫停服務"
 
-#: searx/webutils.py:306
+#: searx/webutils.py:308
 #, python-brace-format
 msgid "{minutes} minute(s) ago"
 msgstr "{minutes} 分鐘前"
 
-#: searx/webutils.py:307
+#: searx/webutils.py:309
 #, python-brace-format
 msgid "{hours} hour(s), {minutes} minute(s) ago"
 msgstr "{hours} 小時 {minutes} 分鐘前"
 
-#: searx/answerers/random.py:69
+#: searx/answerers/random.py:68
 msgid "Generate different random values"
 msgstr "產生不同的隨機數值"
 
@@ -668,7 +668,7 @@ msgstr "產生不同的隨機數值"
 msgid "Compute {func} of the arguments"
 msgstr "計算參數的 {func}"
 
-#: searx/engines/openstreetmap.py:158
+#: searx/engines/openstreetmap.py:155
 msgid "Show route in map .."
 msgstr "在地圖上顯示路線 .."
 
@@ -681,27 +681,23 @@ msgstr "{title}（已過時）"
 msgid "This entry has been superseded by"
 msgstr "此條目已被以下內容取代"
 
-#: searx/engines/qwant.py:293
+#: searx/engines/qwant.py:298
 msgid "Channel"
 msgstr "頻道"
 
-#: searx/engines/radio_browser.py:153
+#: searx/engines/radio_browser.py:144
 msgid "bitrate"
 msgstr "位元速率"
 
-#: searx/engines/radio_browser.py:154
+#: searx/engines/radio_browser.py:145
 msgid "votes"
 msgstr "投票數"
 
-#: searx/engines/radio_browser.py:155
+#: searx/engines/radio_browser.py:146
 msgid "clicks"
 msgstr "點擊數"
 
-#: searx/engines/seekr.py:193 searx/engines/zlibrary.py:137
-msgid "Language"
-msgstr "語言"
-
-#: searx/engines/semantic_scholar.py:102
+#: searx/engines/semantic_scholar.py:141
 #, python-brace-format
 msgid ""
 "{numCitations} citations from the year {firstCitationVelocityYear} to "
@@ -710,144 +706,158 @@ msgstr ""
 "{firstCitationVelocityYear} 至 {lastCitationVelocityYear} 間被引用 "
 "{numCitations} 次"
 
-#: searx/engines/tineye.py:48
+#: searx/engines/tineye.py:42
 msgid ""
 "Could not read that image url. This may be due to an unsupported file "
 "format. TinEye only supports images that are JPEG, PNG, GIF, BMP, TIFF or"
 " WebP."
 msgstr "無法存取該影像網址。這可能是因為不支援的文件格式造成的。TinEye 只支援 JPEG、PNG、GIF、BMP、TIFF 或 WebP 的影像。"
 
-#: searx/engines/tineye.py:54
+#: searx/engines/tineye.py:48
 msgid ""
 "The image is too simple to find matches. TinEye requires a basic level of"
 " visual detail to successfully identify matches."
 msgstr "影像過於簡單以致無法找到相符的結果。TinEye 需要具備基本的視覺細節才能成功識別匹配項。"
 
-#: searx/engines/tineye.py:59
+#: searx/engines/tineye.py:53
 msgid "The image could not be downloaded."
 msgstr "圖片無法下載。"
 
-#: searx/engines/zlibrary.py:138
+#: searx/engines/zlibrary.py:78
+msgid "Language"
+msgstr "語言"
+
+#: searx/engines/zlibrary.py:79
 msgid "Book rating"
 msgstr "書籍評分"
 
-#: searx/engines/zlibrary.py:139
+#: searx/engines/zlibrary.py:80
 msgid "File quality"
 msgstr "文件品質"
 
-#: searx/plugins/ahmia_filter.py:32
+#: searx/plugins/ahmia_filter.py:33
 msgid "Ahmia blacklist"
 msgstr "Ahmia 黑名單"
 
-#: searx/plugins/ahmia_filter.py:33
+#: searx/plugins/ahmia_filter.py:34
 msgid "Filter out onion results that appear in Ahmia's blacklist."
 msgstr "過濾掉 Ahmia 黑名單中出現的洋蔥結果。"
 
-#: searx/plugins/calculator.py:38
-msgid "Basic Calculator"
-msgstr "基本計算機"
+#: searx/plugins/calculator.py:25
+msgid "Calculator"
+msgstr "計算機"
 
-#: searx/plugins/calculator.py:39
-msgid "Calculate mathematical expressions via the search bar"
-msgstr "藉由搜尋欄計算數學式"
+#: searx/plugins/calculator.py:26
+msgid "Parses and solves mathematical expressions."
+msgstr "解析並求解數學表達式。"
 
-#: searx/plugins/hash_plugin.py:34
+#: searx/plugins/hash_plugin.py:33
 msgid "Hash plugin"
 msgstr "雜湊 (Hash) 外掛"
 
-#: searx/plugins/hash_plugin.py:36
+#: searx/plugins/hash_plugin.py:35
 msgid ""
 "Converts strings to different hash digests. Available functions: md5, "
 "sha1, sha224, sha256, sha384, sha512."
 msgstr "將字串轉換為不同的雜湊值。 可用的函數有：md5, sha1, sha224, sha256, sha384, sha512。"
 
-#: searx/plugins/hash_plugin.py:64
+#: searx/plugins/hash_plugin.py:63
 msgid "hash digest"
 msgstr "雜湊摘要值"
 
-#: searx/plugins/hostnames.py:123
+#: searx/plugins/hostnames.py:119
 msgid "Hostnames plugin"
 msgstr "主機名稱外掛"
 
-#: searx/plugins/hostnames.py:124
+#: searx/plugins/hostnames.py:120
 msgid "Rewrite hostnames and remove or prioritize results based on the hostname"
 msgstr "複寫主機名稱 / 根據主機名稱將結果隱藏或優先"
 
-#: searx/plugins/oa_doi_rewrite.py:55
+#: searx/plugins/infinite_scroll.py:25
+msgid "Infinite scroll"
+msgstr "無限捲動"
+
+#: searx/plugins/infinite_scroll.py:26
+msgid ""
+"Automatically loads the next page when scrolling to bottom of the current"
+" page"
+msgstr "到達目前頁面底部時，自動載入下一頁"
+
+#: searx/plugins/oa_doi_rewrite.py:54
 msgid "Open Access DOI rewrite"
 msgstr "開放存取 DOI 重寫"
 
-#: searx/plugins/oa_doi_rewrite.py:56
+#: searx/plugins/oa_doi_rewrite.py:55
 msgid ""
 "Avoid paywalls by redirecting to open-access versions of publications "
 "when available"
 msgstr "盡可能重新導向至出版品的開放存取版本，以避免收費牆"
 
-#: searx/plugins/self_info.py:38
+#: searx/plugins/self_info.py:37
 msgid "Self Information"
 msgstr "自身訊息"
 
-#: searx/plugins/self_info.py:40
+#: searx/plugins/self_info.py:39
 msgid ""
 "Displays your IP if the query is \"ip\" and your user agent if the query "
 "is \"user-agent\"."
 msgstr "如果查詢的是 \"ip\"，則顯示您的 IP； 如果查詢的是 \"user-agent\"，則顯示您的使用者代理。"
 
-#: searx/plugins/self_info.py:54
+#: searx/plugins/self_info.py:53
 msgid "Your IP is: "
 msgstr "您的 IP 是： "
 
-#: searx/plugins/self_info.py:58
+#: searx/plugins/self_info.py:57
 msgid "Your user-agent is: "
 msgstr "您的使用者代理是： "
 
-#: searx/plugins/time_zone.py:34
+#: searx/plugins/time_zone.py:33
 msgid "Timezones plugin"
-msgstr ""
+msgstr "時區外掛"
 
-#: searx/plugins/time_zone.py:35
+#: searx/plugins/time_zone.py:34
 msgid "Display the current time on different time zones."
-msgstr ""
+msgstr "顯示不同時區的時間。"
 
-#: searx/plugins/tor_check.py:42
+#: searx/plugins/tor_check.py:41
 msgid "Tor check plugin"
 msgstr "Tor 網路檢測外掛"
 
-#: searx/plugins/tor_check.py:44
+#: searx/plugins/tor_check.py:43
 msgid ""
 "This plugin checks if the address of the request is a Tor exit-node, and "
 "informs the user if it is; like check.torproject.org, but from SearXNG."
 msgstr "此外掛程式檢查請求的位址是否為 Tor 退出節點，並通知使用者；類似於 check.torproject.org，但來自 SearXNG。"
 
-#: searx/plugins/tor_check.py:65
+#: searx/plugins/tor_check.py:64
 msgid "Could not download the list of Tor exit-nodes from"
 msgstr "無法從以下位置下載 Tor 出口節點列表"
 
-#: searx/plugins/tor_check.py:72
+#: searx/plugins/tor_check.py:71
 msgid "You are using Tor and it looks like you have the external IP address"
 msgstr "您正在使用 Tor，並且您似乎有外部 IP 地址"
 
-#: searx/plugins/tor_check.py:76
+#: searx/plugins/tor_check.py:75
 msgid "You are not using Tor and you have the external IP address"
 msgstr "您未使用 Tor，並且您有外部 IP 地址"
 
-#: searx/plugins/tracker_url_remover.py:36
+#: searx/plugins/tracker_url_remover.py:35
 msgid "Tracker URL remover"
 msgstr "追蹤器 URL 移除器"
 
-#: searx/plugins/tracker_url_remover.py:37
+#: searx/plugins/tracker_url_remover.py:36
 msgid "Remove trackers arguments from the returned URL"
 msgstr "從傳回的 URL 中移除追蹤器參數"
 
-#: searx/plugins/unit_converter.py:49
+#: searx/plugins/unit_converter.py:42
 msgid "Unit converter plugin"
 msgstr "單位轉換外掛"
 
-#: searx/plugins/unit_converter.py:50
+#: searx/plugins/unit_converter.py:43
 msgid "Convert between units"
 msgstr "在單位之間轉換"
 
-#: searx/result_types/answer.py:224
+#: searx/result_types/answer.py:223
 #, python-brace-format
 msgid "{location}: {temperature}, {condition}"
 msgstr "{location}: {temperature}, {condition}"
@@ -869,41 +879,41 @@ msgstr "搜尋頁面"
 msgid "Donate"
 msgstr "捐款"
 
-#: searx/templates/simple/base.html:54
-#: searx/templates/simple/preferences.html:156
+#: searx/templates/simple/base.html:55 searx/templates/simple/base.html:57
+#: searx/templates/simple/preferences.html:152
 msgid "Preferences"
 msgstr "偏好設定"
 
-#: searx/templates/simple/base.html:64
+#: searx/templates/simple/base.html:68
 msgid "Powered by"
 msgstr "技術支援"
 
-#: searx/templates/simple/base.html:64
+#: searx/templates/simple/base.html:68
 msgid "a privacy-respecting, open metasearch engine"
 msgstr "尊重隱私的開源元搜尋引擎"
 
-#: searx/templates/simple/base.html:65
+#: searx/templates/simple/base.html:69
 #: searx/templates/simple/result_templates/packages.html:59
 msgid "Source code"
 msgstr "原始碼"
 
-#: searx/templates/simple/base.html:66
+#: searx/templates/simple/base.html:70
 msgid "Issue tracker"
 msgstr "問題追蹤"
 
-#: searx/templates/simple/base.html:67 searx/templates/simple/stats.html:18
+#: searx/templates/simple/base.html:71 searx/templates/simple/stats.html:18
 msgid "Engine stats"
 msgstr "引擎統計"
 
-#: searx/templates/simple/base.html:69
+#: searx/templates/simple/base.html:73
 msgid "Public instances"
 msgstr "公開站臺"
 
-#: searx/templates/simple/base.html:72
+#: searx/templates/simple/base.html:76
 msgid "Privacy policy"
 msgstr "隱私權條款"
 
-#: searx/templates/simple/base.html:75
+#: searx/templates/simple/base.html:79
 msgid "Contact instance maintainer"
 msgstr "聯絡站點維護人員"
 
@@ -911,42 +921,43 @@ msgstr "聯絡站點維護人員"
 msgid "Click on the magnifier to perform search"
 msgstr "點選放大鏡以執行搜尋"
 
-#: searx/templates/simple/macros.html:40
+#: searx/templates/simple/macros.html:41
 msgid "Length"
 msgstr "長度"
 
-#: searx/templates/simple/macros.html:41
+#: searx/templates/simple/macros.html:42
+#: searx/templates/simple/result_templates/paper.html:74
 msgid "Views"
 msgstr "檢視次數"
 
-#: searx/templates/simple/macros.html:42
-#: searx/templates/simple/result_templates/files.html:34
+#: searx/templates/simple/macros.html:43
+#: searx/templates/simple/result_templates/file.html:18
 #: searx/templates/simple/result_templates/images.html:19
-#: searx/templates/simple/result_templates/paper.html:6
+#: searx/templates/simple/result_templates/paper.html:14
 msgid "Author"
 msgstr "作者"
 
-#: searx/templates/simple/macros.html:50
+#: searx/templates/simple/macros.html:51
 msgid "cached"
 msgstr "快照"
 
-#: searx/templates/simple/new_issue.html:64
+#: searx/templates/simple/new_issue.html:60
 msgid "Start submitting a new issue on GitHub"
 msgstr "在 GitHub 上提交問題"
 
-#: searx/templates/simple/new_issue.html:66
+#: searx/templates/simple/new_issue.html:62
 msgid "Please check for existing bugs about this engine on GitHub"
 msgstr "請在 GitHub 上檢查是否已有關於此引擎的已知錯誤"
 
-#: searx/templates/simple/new_issue.html:69
+#: searx/templates/simple/new_issue.html:65
 msgid "I confirm there is no existing bug about the issue I encounter"
 msgstr "我確認提交的問題不在目前問題列表"
 
-#: searx/templates/simple/new_issue.html:71
+#: searx/templates/simple/new_issue.html:67
 msgid "If this is a public instance, please specify the URL in the bug report"
 msgstr "如果這是公開站臺， 請在問題報告中附上 URL"
 
-#: searx/templates/simple/new_issue.html:72
+#: searx/templates/simple/new_issue.html:68
 msgid "Submit a new issue on Github including the above information"
 msgstr "在 GitHub 上提交包含上述資訊的新問題"
 
@@ -983,43 +994,53 @@ msgstr "P80"
 msgid "P95"
 msgstr "P95"
 
-#: searx/templates/simple/preferences.html:136
-msgid "Failed checker test(s): "
-msgstr "檢查程式測試失敗： "
-
-#: searx/templates/simple/preferences.html:138
+#: searx/templates/simple/preferences.html:134
 msgid "Errors:"
 msgstr "錯誤："
 
-#: searx/templates/simple/preferences.html:163
+#: searx/templates/simple/preferences.html:156
+msgid ""
+"This is a preview of the settings used by the 'Search URL' you used to "
+"get here."
+msgstr "這是您使用「搜尋網址」來到此處所採用設定的預覽。"
+
+#: searx/templates/simple/preferences.html:158
+msgid "Press save to copy these preferences to your browser."
+msgstr "按下儲存以將這些設定複製至您的瀏覽器。"
+
+#: searx/templates/simple/preferences.html:159
+msgid "Click here to view your browser preferences instead:"
+msgstr "請點擊此處查看您的瀏覽器偏好設定："
+
+#: searx/templates/simple/preferences.html:169
 msgid "General"
 msgstr "一般"
 
-#: searx/templates/simple/preferences.html:166
+#: searx/templates/simple/preferences.html:172
 msgid "Default categories"
 msgstr "預設分類"
 
-#: searx/templates/simple/preferences.html:194
+#: searx/templates/simple/preferences.html:200
 msgid "User interface"
 msgstr "使用者介面"
 
-#: searx/templates/simple/preferences.html:217
+#: searx/templates/simple/preferences.html:220
 msgid "Privacy"
 msgstr "隱私"
 
-#: searx/templates/simple/preferences.html:232
+#: searx/templates/simple/preferences.html:235
 msgid "Engines"
 msgstr "搜尋引擎"
 
-#: searx/templates/simple/preferences.html:234
+#: searx/templates/simple/preferences.html:237
 msgid "Currently used search engines"
 msgstr "目前使用的搜尋引擎"
 
-#: searx/templates/simple/preferences.html:243
+#: searx/templates/simple/preferences.html:246
 msgid "Special Queries"
 msgstr "特殊查詢"
 
-#: searx/templates/simple/preferences.html:251
+#: searx/templates/simple/preferences.html:254
 msgid "Cookies"
 msgstr "Cookies"
 
@@ -1127,7 +1148,7 @@ msgid "Parameter"
 msgstr "參數"
 
 #: searx/templates/simple/result_templates/code.html:29
-#: searx/templates/simple/result_templates/files.html:36
+#: searx/templates/simple/result_templates/file.html:24
 #: searx/templates/simple/stats.html:119
 msgid "Filename"
 msgstr "檔名"
@@ -1139,18 +1160,6 @@ msgstr "函式"
 #: searx/templates/simple/stats.html:121
 msgid "Code"
 msgstr "程式碼"
-
-#: searx/templates/simple/stats.html:128
-msgid "Checker"
-msgstr "檢查程式"
-
-#: searx/templates/simple/stats.html:131
-msgid "Failed test"
-msgstr "測試未透過"
-
-#: searx/templates/simple/stats.html:132
-msgid "Comment(s)"
-msgstr "注釋"
 
 #: searx/templates/simple/answer/translations.html:12
 #: searx/templates/simple/preferences/answerers.html:8
@@ -1365,7 +1374,7 @@ msgstr "這是 SearXNG 在您的裝置上儲存的 Cookie 列表及其對應的�
 
 #: searx/templates/simple/preferences/cookies.html:3
 msgid "With this list, you can assess the transparency of SearXNG."
-msgstr ""
+msgstr "透過此清單，您可以評估 SearXNG 的透明度。"
 
 #: searx/templates/simple/preferences/cookies.html:9
 msgid "Cookie name"
@@ -1499,17 +1508,7 @@ msgstr "圖片代理"
 
 #: searx/templates/simple/preferences/image_proxy.html:14
 msgid "Proxy image results through SearXNG"
-msgstr ""
-
-#: searx/templates/simple/preferences/infinite_scroll.html:2
-msgid "Infinite scroll"
-msgstr "無限捲動"
-
-#: searx/templates/simple/preferences/infinite_scroll.html:14
-msgid ""
-"Automatically load the next page when scrolling to the bottom of the "
-"current page"
-msgstr ""
+msgstr "透過 SearXNG 代理圖片"
 
 #: searx/templates/simple/preferences/language.html:24
 msgid "What language do you prefer for search?"
@@ -1616,13 +1615,13 @@ msgid "Repository"
 msgstr "儲存庫"
 
 #: searx/templates/simple/result_templates/default.html:6
-#: searx/templates/simple/result_templates/files.html:8
-#: searx/templates/simple/result_templates/files.html:11
+#: searx/templates/simple/result_templates/file.html:53
+#: searx/templates/simple/result_templates/file.html:56
 msgid "show media"
 msgstr "顯示媒體"
 
 #: searx/templates/simple/result_templates/default.html:6
-#: searx/templates/simple/result_templates/files.html:8
+#: searx/templates/simple/result_templates/file.html:54
 msgid "hide media"
 msgstr "隱藏媒體"
 
@@ -1631,20 +1630,24 @@ msgstr "隱藏媒體"
 msgid "This site did not provide any description."
 msgstr "此網站未提供任何描述。"
 
-#: searx/templates/simple/result_templates/files.html:38
+#: searx/templates/simple/result_templates/file.html:30
 #: searx/templates/simple/result_templates/images.html:22
 #: searx/templates/simple/result_templates/torrent.html:18
 msgid "Filesize"
 msgstr "檔案大小"
 
-#: searx/templates/simple/result_templates/files.html:40
+#: searx/templates/simple/result_templates/file.html:36
 msgid "Date"
 msgstr "日期"
 
-#: searx/templates/simple/result_templates/files.html:42
-#: searx/templates/simple/result_templates/paper.html:24
+#: searx/templates/simple/result_templates/file.html:42
+#: searx/templates/simple/result_templates/paper.html:44
 msgid "Type"
 msgstr "分類"
+
+#: searx/templates/simple/result_templates/file.html:67
+msgid "Download"
+msgstr "下載"
 
 #: searx/templates/simple/result_templates/images.html:20
 msgid "Resolution"
@@ -1687,7 +1690,7 @@ msgid "Updated at"
 msgstr "更新於"
 
 #: searx/templates/simple/result_templates/packages.html:30
-#: searx/templates/simple/result_templates/paper.html:25
+#: searx/templates/simple/result_templates/paper.html:50
 msgid "Tags"
 msgstr "標籤"
 
@@ -1707,39 +1710,39 @@ msgstr "專案"
 msgid "Project homepage"
 msgstr "專案主頁"
 
-#: searx/templates/simple/result_templates/paper.html:5
+#: searx/templates/simple/result_templates/paper.html:8
 msgid "Published date"
 msgstr "發布日期"
 
-#: searx/templates/simple/result_templates/paper.html:9
+#: searx/templates/simple/result_templates/paper.html:20
 msgid "Journal"
 msgstr "期刊"
 
-#: searx/templates/simple/result_templates/paper.html:22
+#: searx/templates/simple/result_templates/paper.html:32
 msgid "Editor"
 msgstr "編輯"
 
-#: searx/templates/simple/result_templates/paper.html:23
+#: searx/templates/simple/result_templates/paper.html:38
 msgid "Publisher"
 msgstr "出版者"
 
-#: searx/templates/simple/result_templates/paper.html:26
+#: searx/templates/simple/result_templates/paper.html:56
 msgid "DOI"
 msgstr "DOI"
 
-#: searx/templates/simple/result_templates/paper.html:27
+#: searx/templates/simple/result_templates/paper.html:62
 msgid "ISSN"
 msgstr "國際標準期刊號（ISSN）"
 
-#: searx/templates/simple/result_templates/paper.html:28
+#: searx/templates/simple/result_templates/paper.html:68
 msgid "ISBN"
 msgstr "國際標準書號（ISBN）"
 
-#: searx/templates/simple/result_templates/paper.html:33
+#: searx/templates/simple/result_templates/paper.html:91
 msgid "PDF"
 msgstr "PDF"
 
-#: searx/templates/simple/result_templates/paper.html:34
+#: searx/templates/simple/result_templates/paper.html:92
 msgid "HTML"
 msgstr "HTML"
 
@@ -2289,3 +2292,28 @@ msgstr "隱藏影片"
 
 #~ msgid "repo"
 #~ msgstr "儲存庫"
+
+#~ msgid "Basic Calculator"
+#~ msgstr "基本計算機"
+
+#~ msgid "Calculate mathematical expressions via the search bar"
+#~ msgstr "藉由搜尋欄計算數學式"
+
+#~ msgid ""
+#~ "Automatically load the next page when"
+#~ " scrolling to the bottom of the "
+#~ "current page"
+#~ msgstr ""
+
+#~ msgid "Failed checker test(s): "
+#~ msgstr "檢查程式測試失敗： "
+
+#~ msgid "Checker"
+#~ msgstr "檢查程式"
+
+#~ msgid "Failed test"
+#~ msgstr "測試未透過"
+
+#~ msgid "Comment(s)"
+#~ msgstr "注釋"
+
